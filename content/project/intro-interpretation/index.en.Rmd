@@ -1,0 +1,135 @@
+---
+title: "Interpretation of redox measurements"
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: true
+categories: []
+tags:
+- Introduction
+- Interpretation
+subtitle: ''
+summary: 'Rules of thumbs when evaluating and analyzing redox data'
+authors: []
+featured: no
+image:
+  caption: 
+  focal_point: Smart
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+
+```{r echo = FALSE, message = FALSE}
+
+knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+
+library(tidyverse)
+library(widgetframe)
+library(timevis)
+library(rmarkdown)
+library(kableExtra)
+
+## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+
+```
+
+As outlined in the introduction, redox potentials have a huge importance in soils and sediments since the data enables to obtain insights into particular processes that take place. Even though the measurement is very valuable, the interpretation is not so easy and people must be cautious. Hence, “measured values of E~H~ obtained from a Pt electrode thus have only qualitative significance in soils” (Sposito, 2016) and the application, “in common with so many other measurements in nature, is in their interpretation by a knowledgeable observer” (Bohn, 1971). 
+
+Here are some rules of thumbs:
+
+* Only use integers values without a decimal place ❗ 
+* Some authors argue that values up to 50 mV have little meaning. Thus, if one value is 480 mV and the other is 490 mV there is no actual difference between the measurements. Keep in mind that the E~H~ in soils ranges between -300 and +700 mV. 
+* It is sometimes better to interpret the development of the E~H~ (is it increasing/decreasing; is the decrease straightforward or stopped) than only consider a snapshot in time. 
+* Don't take individual readings from only one Pt electrode as valid. In most of our studies we employ at least **three individual electrodes per depth**.  Some authors suggest to use even eight to ten electrodes per depth (Cogger et al. 1992).
+* Working with the mean and the standard deviation from a time series is good, but even better is to give information about the distribution of redox classes. 
+
+I will illustrate the bullet points above in the following. The data is taken from our study site at Polder Speicherkoog ([see this post to see what the site features]()):
+
+```{r echo = FALSE, message=FALSE}
+
+koog <- readr::read_delim("data.csv", delim = ";",
+                          col_types = cols(
+                          # col_datetime parse the input character representations to a date/time
+                          # POSIXct stores seconds since UNIX epoch (+some other data)
+                          # POSIXlt stores a list of day, month, year, hour, etc.
+                          date = col_datetime(format = "%d.%m.%Y %T")
+                        ))
+
+# Adds + 207 mV to all columns that start with EH
+koog <- koog %>%
+  mutate(across(contains("EH"), ~. +207)) # The tilde is used for a statistical model (left side is response and right is explanatory variables)
+
+# Adds a timestamp for daily, monthly, and yearly data aggregation
+koog <- koog %>%
+  mutate(day = as.Date(format(date, "%Y-%m-%d")),
+         month = format(date, "%m"),
+         year = format(date, "%Y")
+         )
+
+# Aggregate the hourly data into daily data
+dh_daily <- koog %>%
+  group_by(day, month, year) %>%
+  summarise_if(is.numeric, mean, na.rm = T) # only summarizes numeric values by mean)
+
+# Summarize EH data
+dh_daily 
+
+
+# R want to have the data in a long format rather than a wide format that most are more familiar with (e.g. by working with excel, origin, etc.)
+dh_long <- dh_daily %>%
+  pivot_longer(contains("EH"), names_to = "EH", values_to = "value_EH")
+
+# We can manually specify the order of factors by ft_relevel from the forcats package
+dh_long <- dh_long %>%
+   mutate(EH = fct_relevel(EH, "EH10a","EH10b","EH10c",
+                                     "EH20a","EH20b","EH20c",
+                                     "EH30a","EH30b","EH30c",
+                                     "EH60a","EH60b","EH60c",
+                                     "EH100a","EH100b","EH100c",
+                                     "EH150a","EH150b","EH150c"))
+
+
+
+```
+
+How can we account for spatial heterogeneity?
+
+```{r}
+
+
+
+
+# Include the clay lense and show how to deal with it. 
+#Highlight a particular sequence, for example electrode 60b
+dh_long %>%
+  filter(EH == c("EH60a","EH60b","EH60c"))  %>%
+  ggplot(aes(day, value_EH, group = EH, color = ifelse(EH == "EH60b", "Electrode 60b (clay lense)", "Two other electrodes"))) +
+  geom_line(na.rm = T) +
+  facet_wrap(~year, scales = "free_x") +
+  scale_x_date(date_labels = "%m", date_breaks = "3 months") +
+  scale_color_discrete(name = "Redox potential") +
+  labs(
+    title = "Electrode 60b measures lower EH throughout the years",
+    x = "Month",
+    y = expression(paste("E"[H], " (mV)"))
+  ) + 
+  my_theme
+
+
+```
+

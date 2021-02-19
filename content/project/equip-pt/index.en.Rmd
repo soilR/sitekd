@@ -1,0 +1,50 @@
+---
+title: "Redox (e.g. platinum) electrode"
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: true
+categories: []
+tags:
+- Equipment
+- Redox electrode
+subtitle: ''
+summary: 'Click to learn what a **platinum electrode** is'
+authors: []
+featured: no
+image:
+  caption: Photo by Shirish Suwal on Unsplash
+  focal_point: Smart
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+
+```{r echo = FALSE, message = FALSE}
+
+knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+
+library(tidyverse)
+library(widgetframe)
+library(timevis)
+library(rmarkdown)
+library(kableExtra)
+
+## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+
+```
+

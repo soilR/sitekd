@@ -1,0 +1,25 @@
+Reference;Label;asd;Upper;Lower;ref
+Reddy and DeLaune (2008);oxidizing;one;700;300;Reddy, K.R., DeLaune, R.D., 2008. Biogeochemistry of wetlands - science and applications. CRC Press, Boca Raton, FL, USA.
+;moderately reducing;two;300;100;Reddy, K.R., DeLaune, R.D., 2008. Biogeochemistry of wetlands - science and applications. CRC Press, Boca Raton, FL, USA.
+;reducing;three;100;-100;Reddy, K.R., DeLaune, R.D., 2008. Biogeochemistry of wetlands - science and applications. CRC Press, Boca Raton, FL, USA.
+;highly reducing;four;-100;-300;Reddy, K.R., DeLaune, R.D., 2008. Biogeochemistry of wetlands - science and applications. CRC Press, Boca Raton, FL, USA.
+Zhi-Guang (1985);oxidizing;one;700;400;Zhi-Guang, L., 1985. Oxidation-reduction potential. in: Tian-Ren, Y.E. (Ed.), Physical chemistry of paddy soils. Springer, Berlin, Germany, pp. 1-26.
+;weakly reducing;two;400;200;Zhi-Guang, L., 1985. Oxidation-reduction potential. in: Tian-Ren, Y.E. (Ed.), Physical chemistry of paddy soils. Springer, Berlin, Germany, pp. 1-26.
+;moderately reducing;three;200;-100;Zhi-Guang, L., 1985. Oxidation-reduction potential. in: Tian-Ren, Y.E. (Ed.), Physical chemistry of paddy soils. Springer, Berlin, Germany, pp. 1-26.
+;strongly reducing;four;-100;-300;Zhi-Guang, L., 1985. Oxidation-reduction potential. in: Tian-Ren, Y.E. (Ed.), Physical chemistry of paddy soils. Springer, Berlin, Germany, pp. 1-26.
+Mitsch and Gosselink (2015);Nitrogen;one;250;;
+;Manganese;two;225;;
+;Iron;three;100;-100;
+;Sulfur;four;-100;-200;
+;Carbon;five;-200;-300;
+Liu and Narasimhan (1989);Oxygen-Nitrogen;;250;100;From Bartlett and James (1993)
+;Iron;;100;0;From Bartlett and James (1993)
+;Sulfate;;0;-200;From Bartlett and James (1993)
+;Methane-Hydrogen;;-200;;From Bartlett and James (1993)
+Sposito (1989);Oxic;;7;;From Bartlett and James (1993)
+;Suboxic;;7;2;From Bartlett and James (1993)
+;Anoxic;;2;;From Bartlett and James (1993)
+James (1989);Oxic;;13;7;From Bartlett and James (1993)
+;Postoxic;;7;2;
+;Sulfidic;;2;-2;
+;Methanic;;-2;-6;

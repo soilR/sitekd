@@ -1,0 +1,118 @@
+---
+title: "Redox potential - Relevance of redox measurements"
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: no
+categories: []
+tags:
+- Customers
+- Introduction
+subtitle: ''
+summary: 'Scientific fields with interest in measuring redox potentials.'
+authors: []
+lastmod: ''
+featured: no
+image:
+  caption: "Logo by Kristof Dorau"
+  focal_point: ""
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+```{r echo = FALSE, message = FALSE}
+
+library(tidyverse)
+library(widgetframe)
+library(timevis)
+library(patchwork)
+library(rmarkdown)
+library(kableExtra)
+
+## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+
+lit <- readr::read_delim("who.csv", delim = ";")
+
+p1 <- lit %>%
+  ggplot(aes(year, hits)) +
+  geom_col() +
+  labs(
+    title = "Results for the query redox potential",
+    x = "Year",
+    y = "Results per year"
+  ) +
+  my_theme
+
+p2 <- lit %>%
+  drop_na(hits1, category) %>%
+  ggplot(aes(hits1, fct_reorder(category, hits1))) +
+  geom_col() + 
+  labs(
+    title = "Hits per subject area",
+        caption = "from sciencedirect.com; 2021-02-18",
+
+    x = "Results per category",
+    y = "Category"
+  ) +
+  my_theme
+
+p1 / p2 + plot_annotation(tag_levels = "A")
+
+
+```
+
+Over time, the interest in measuring redox potentials is steadily increasing (A) and the applicants come from a broad scientific field. If we explore the categories more into detail, chemistry is by far the most relevant field. Soil science is by nature an interdisciplinary field and its application is so diverse, that overlap to all of the categories exist. In the following I will briefly highlight to which ecological relevant studies delineation of the redox status is important. The following aspects are taken from [Fiedler et al. (2007)](https://www.sciencedirect.com/science/article/pii/S0065211306940012) and added with own aspects.  
+
+
+# Agriculture 🚜
+
+A proper management of soils is a key for high yield in agriculture. If soil drainage is impaired, water saturation will trigger the onset of reducing conditions and in most cases this is bad for the plant roots. The roots will rot and plants, such as 🌽 , don't like conditions where O~2~ is not present. Thus, drainage of wetlands soils is a way to enhance yield and redox measurements are a tool to verify drainage over time (obviously, drainage might be good for agriculture but is associated with negative impacts when we think about the soils capacity to store soil organic carbon in fens and bogs ⚠️)
+
+> In most cases, water logging in soils reduces yield. The effect of water logging can be monitored by redox measurements. The opposite process (drainage) as well. 
+    
+# Plant fitness 🌱
+
+Under ananaerobic conditions plants will suffer from the process that Mn and Fe oxides reductively dissolve. During this process, Mn^2+^ and Fe^2+^ can be taken up by the plant and this will cause toxicity at a certain level (❗ even though both elements are essential nutrients for the plant at the right level). Another side effect of the dissolution from the oxides is that the surface of the minerals cannot store nutrients anymore, e.g. phosphorus. Phosphorus is a key nutrient for plants and this might potentially alter yield as well. 
+
+# Greenhouse gas emissions
+
+Reducing conditions alter the transformation of nitrate (NO~3~^-^; the oxidation state is N^V^) towards nitrous oxide (N~2~O; the oxidation state is now N^I^; nitrogen took up electrons and is now in a reduced state). This is a potential problem because N~2~O is a potent greenhouse gas and 300 times (⚠️) more problematic than one molecule of CO~2~. Overall, the risk of denitrification can be assessed by E~H~ measurements to adjust or monitor the redox range where the likelihood for N~2~O emission is lowest (I really like the study from [Yu and Patrick](https://acsess.onlinelibrary.wiley.com/doi/abs/10.2136/sssaj2003.1952)). Agriculture contributes signifiantly to N~2~O and CH~4~ emissions in Germany with 79% and 63% of the total emissions (Source:  [Ummweltbundesamt:](https://www.umweltbundesamt.de/themen/boden-landwirtschaft/umweltbelastungen-der-landwirtschaft/lachgas-methan)). 
+
+> Two things are bad for the climate: I) A high amount of nitrate application to agricultural fields and II) redox conditions that enable the transformation towards N~2~O
+
+# Trace metals 
+
+Just like nutrients (e.g. phosphorus), trace metals have a high affinity to bind to the surface of Mn and Fe oxides. Some of the trace metals in the soil occur as oxyanions, which means this compounds have a negative surface charge. A prominent example is arsenate (AsO~4~^3−^, As^V^) that forms a very strong inner-sphere surface complex. Thus, under oxidizing conditions when the Fe oxides are stable, the risk for arsenic mobilisation is low but if the Fe oxides are used as electron acceptors by microorganisms (during flooding of the soil), arsenic that is adsorbed onto the surface of the mineral is released into soil solution and can be taken up by the plant roots. Arsenic translocation in rice cultivation causes massive problems that will become potentially worse under climate change (see [Muehe et al. 2019](https://www.nature.com/articles/s41467-019-12946-4)).
+
+# Pharmaceuticals
+
+Organic compounds are affected by biotransformation under variable redox conditions. In 2014, a good collegeau of mine ([Philipp Dalkmann](https://acsess.onlinelibrary.wiley.com/doi/abs/10.2134/jeq2013.11.0475)) conducted experiments within microcosms from our group. Some of the applied compounds (namely *sulfamethoxazole* and *bezafibrate*) showed a decreasing concentration under moderately reducing conditions with time indicating a transformation of these compounds. At best, the concentration of pharmaceuticals decreases completely but sometimes metabolites are even more dangerous than the original product.
+
+> Knowledge of the distinct organic compund AND the redox status is important to assess the risk of mobilisation and transformation. 
+
+# Soil formation 
+
+Soils develop over time (the technical term is pedogenesis; *pedon* = soil and greek *genesis* = development) and redox dynamics contribute significantly to this development. Within the German Soil Classification (and international ones) the occurrence of redoximorphic features (RMF) is an important property to label a soil with a particular name. 
+
+![Photo of  redoximorphic features (Taken by Dr. Gerhard Milbert)](01.png)
+
+> Redoximorphic features comprise reductomorphic (permanently wet, gray/blue/green gley colors) and oximorphic (alternating reducing and oxidizing, red/brown/yellow color) properties. 
+
+Just from field observations it is difficult to tell, whether or not RMF form actively under the ambient climatic conditions or they resemble features from a moist climate with more precipitation and less evapotranspiration. In a recent study from our group we monitored [redox dynamics in a Stagnosol](https://www.sciencedirect.com/science/article/abs/pii/S0341816220300783) (the picture above was taken from this soil pit) close to the city of Cologne. In fact, only two out of the last seven years demonstrated for a very short period temporally reducing conditions. Under progressing climate change the likelihood for these events will diminish and therefore, the soil type for this particular study site will be relictic (threatened with extinction sounds harsh but I guess this highlights what I mean ☠️). 
+
+
+

@@ -1,0 +1,92 @@
+---
+title: "Redox classes - why is a differentiation important"
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: false
+categories: []
+tags:
+- Introduction
+- Interpretation
+subtitle: ''
+summary: 'Some words about the concept of redox classes'
+authors: []
+featured: no
+image:
+  caption: 
+  focal_point: Smart
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+```{=html}
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+```
+
+The determination of the soil's redox status is important and impacts a variety of processes of environmental concern:
+
+-   greenhouse gas emission from soils,
+-   nutrient availability,
+-   pollutant dynamics, and
+-   pedogenesis are only some examples.
+
+From a practical point of view, it is not sufficient to state that a soil is reducing or not. It is encouraged to classify and determine redox classes with a more distinct differentiation.
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+
+library(tidyverse)
+library(widgetframe)
+library(timevis)
+library(patchwork)
+library(rmarkdown)
+library(kableExtra)
+library(forcats)
+library(ggrepel)
+
+knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+
+
+## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+```
+
+![*Differentiation of redox classes taken from Dorau 2016. The indices refer to the following references: ^1^Yu and Patrick 2004; ^2^Shrestha et al. 2014; ^3^Rennert and Mansfeldt 2005; ^4^Matern and Mansfeldt 2015; ^5^Hindersmann and Mansfeldt 2014; ^6^Dalkmann et al. 2013; ^7^Schuth et al. 2015; ^8^Mansfeldt and Overesch 2013; ^9^Peretyazhko and Sposito 2005; ^10^Schieber 2011; ^11^Morse et al. 1999; ^12^Picek et al. 2000*](01.PNG)
+
+As outlined before, oxygen, manganese, iron, and sulfate are redox sensitive compounds in the soils environment. The transformation (*reduction*) is coupled to the oxidation of soil organic matter and occurs in a predictable sequence.
+
+> The sequential reduction sequence is synonymously called reddox ladder.
+
+```{r echo = FALSE, message=FALSE}
+
+classes <- readr::read_delim("classes.csv", delim = ";")
+
+options(knitr.kable.NA = '')
+
+classes %>%
+  select(Reference, Label, Upper, Lower) %>%
+  kbl(caption = "Prominent redox classes in soils at pH 7") %>%
+  kable_paper("hover", full_width = T)
+
+```
+
+Some things are evident from the table above:
+
+1.  The authors label their classes differently (e.g. strongly and highly reducing is somewhat synonym between Zhi-Guang and Reddy & DeLaune) and there is also some overlap between the classes.
+2.  Mitsch and Gosselink (2015) or Liu and Narasimhan (1989) do no label the class but link it directly to the disappearance of an electron acceptor or the appearance of its reduced counterpart.
+3.  The authors to not entirely stick to E~H~ but James (1989) and Sposito (1989) employ *pe*. The *pe* is a measure of the electron activity and can be calculated from the redox potential, which simplifies to:
+    + $pe = \frac{E_{H}}{59}$ where E~H~ is given in mV. 
+    
+A benefit to employ the redox parameter "pe+pH" is the partitioning of H^+^ ions from a chemical reaction into those associated with the **redox component** and those with the **acid-base component** (Lindsay 1979). However, the factor 59 (called Nernst-factor) has only to some extent justification in soil science because the MnO~2~-Mn^2+^ systems features a value of 118 and for the FeOOH-Fe^2+^ system 177 (Bohn et al. 2001; Mansfeldt 2019). Since E~H~ is a mixed potential derived from a multitude of redox pairs a justification for a particular factor is hard to tell. Either way, the pH must be mentioned when E~H~ data is presented.  
+    
+> The E~H~ should not be considered as a **treshold** ❗️ because there are other factors such as temperature and pH which impact transformation rates in soils.

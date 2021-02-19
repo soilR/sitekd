@@ -1,0 +1,71 @@
+---
+title: Redox potential - What is it?
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: no
+categories: []
+tags:
+- Redox potential
+- Introduction
+subtitle: ''
+summary: Click to see what the **redox potential** is and why it is important in soil science.
+authors: []
+lastmod: ''
+featured: no
+image:
+  caption: "Logo by Kristof Dorau"
+  focal_point: ""
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+The **redox potential** (**E~H~**; in mV or V) is a measure of the electron availability in soils. It affects the oxidation states of prominent elements occuring in soils, e.g. 
+
+* oxygen (O~2~)
+* nitrogen (N; as N^V^ in nitrate)
+* manganese (Mn; as Mn^III,IV^ in oxides)
+* iron (Fe; as Fe^III^ in oxides)
+* sulfur (S; as S^VI^ in sulfate)
+
+Soils habitat microorganisms, which are to a great extent responsible that redox reactions take place. Imagine the soil as a place where electrons are continuously shuttled from one place to another. The soil organic matter (SOM) content is the biggest pool for electrons. The SOM pool in soils is vulnerable and subject to aerobic respiration, which is the oxidation reaction in which the  carbon is oxidized to carbon dioxide (CO~2~). Thereby, energy ⚡  is released and since free electrons do not exist in chemical reactions, they need do be transferred to an electron acceptor. 
+Typically, O~2~ is the preferred acceptor because microorganisms are smart. They perform best when electrons are shuttled to O~2~ that is reduced to H~2~O (the oxidation state of oxygen in water is lower than it is in dimolecular oxygen because of the e^-^ uptake). 
+
+> An electron donor (e.g. SOM) donates electrons, an electron acceptor (e.g. O~2~) gains electrons
+
+Oxygen is not omnipresent in soils. Even though the pore space in soils makes up ~50% of the total volume (more or less), rainfall events and rise of groundwater increases the soil water content and this hampers the path for oxygen to diffuse from the atmosphere into the soil. Thereby, microorganisms do not die immediately when O~2~ dissapears (I imagine they hibernate like a 🐸 or a 🐻). Microbes in the soil are not reliant on O~2~ but can use other electron acceptors instead (see scheme below). They start working when the O~2~ content is low (facultative anaerobe living organisms) or strictly absent (obligate anaerobe living organisms) and reduce sequentially other electron acceptors, for instance nitrogen in nitrate, Mn^III,IV^ and so on.
+
+![Scheme of E~H~ measurements (adapted from Fiedler et al. 2007; Reddy and DeLaune 2008; Strawn et al. 2015; taken from Dorau 2016)](01.jpg) 
+
+> The E~H~ is an expression and indicator, which electron acceptors are utilized by microbes
+
+What has this to do with E~H~? High values in soils are indicative that O~2~ is present (> 300 mV at pH 7). We label the soil milieu as aerobic or oxidizing (I will discuss the importance of the pH in another chapter). This happens when the electron acceptors in the soil occur in their oxidized species (O~2~, nitrate, Mn and Fe oxides, sulfate; see scheme above). If the E~H~ is low, e.g < -100 mV at pH 7, the soil is labeled anaerobic or reducing with the occurrence of reduced species (H~2~O, Mn^2+^, Fe^2+^, S^2-^). 
+
+> Species = Iron (Fe) has different redox states. The unsoluble stable form Fe(III) within minerals and the soluble Fe(II). These are the most important **species**
+
+The E~H~ in the soil can be measured by using an inert metal electrode, a reference electrode and a portable voltmeter to measure the voltage between both electrodes (for more details see the chapter **Equipment**). 
+
+![Nernst equation](02.jpg)
+
+The equation above is the [Nernst equation](https://en.wikipedia.org/wiki/Nernst_equation) and it is the theoretical framework for redox measurements in soils. Here it is idealized that a soil in an oxidized state (+800 mV)  features a low electron availability whereas a soil in a reduced state (-400 mV) features a high electron availability. Overall, the E~H~ is important to know to put geochemical processes that take place into context. 
+
+I will talk more about redox measurements in the following and hope you enjoyed this read. 
+
+Yours, 
+
+Kristof
+
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>

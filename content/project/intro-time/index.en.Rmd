@@ -1,0 +1,120 @@
+---
+title: "Timeline - A brief history of redox measurements"
+author: "Kristof Dorau"
+date: '2021-02-09'
+slug: null
+draft: no
+categories: []
+tags:
+- Introduction
+- Redox classes
+- History
+subtitle: ''
+summary: "A summary of important findings and technological breakthroughs"
+authors: []
+lastmod: ''
+featured: no
+image:
+  caption: Photo by Aron Visuals on Unsplash
+  focal_point: ""
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+
+The following timeline was created with the R package **timevis** ⌚️ [Link](https://daattali.com/shiny/timevis-demo/). It offers a huge flexibility since it enables to pan along the timeline, zoom in and zoom out. This summary of the history of redox measurements in soils is based on my own findings and literature I had cited previously.  Please give me a note and I will edit the timeline with further findings.
+For a better overview, I built groups of the commonly employed methods to characterize the soil redox status:
+
+* E~H~ measurements by redox electrodes  
+* Dyes that indicate the presence of, e.g., Fe^2+^  
+* IRIS tools (**I**ndicator of **R**eduction **I**n **S**oils) that indicate Mn and Fe reducing conditions by dissolution of synthetic minerals
+* Others (e.g.) 
+    + Iron metal rods
+    + Terminal electron accepting processes (TEAPs) approach
+    + Oxidative capacity (OXC) approach
+    + ...
+
+
+```{r echo = FALSE, message = FALSE}
+
+library(tidyverse)
+library(widgetframe)
+library(timevis)
+library(rmarkdown)
+library(kableExtra)
+
+## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+# the package timeline NEEDS a data frame and NOT a tibble...
+timeline <- read.csv("timeline.csv", sep = ";")
+timeline <- timeline[,1:5]
+timeline_groups <- read.csv("timeline_groups.csv", sep = ";")
+
+# All columns need to be in factor format
+timeline$content <- as.factor(timeline$content)
+# Change the date format
+timeline$start <- as.Date(timeline$start, format="%d.%m.%Y")
+timeline$start <- as.factor(timeline$start)
+timeline$end <- as.factor(timeline$end)
+timeline$group <- as.factor(timeline$group)
+# And for the seperate data table for the grouping
+timeline_groups$id <- as.factor(timeline_groups$id)
+timeline_groups$content <- as.factor(timeline_groups$content)
+
+# Plot the time line
+timevis(timeline, groups = timeline_groups)
+
+```
+
+The following static timeline (💯 % **ggplot**) is more general of the most important findings with major breakthroughs:
+
+```{r  echo = FALSE, message = FALSE}
+
+library(tidyverse)
+library(ggplot2)
+library(scales)
+library(lubridate)
+library(dplyr)
+library(ggalt)
+library(ggrepel)
+
+# Create data to plot
+data <- tribble( ~year, ~event, ~displ,
+                as.Date("1920-02-17"), "Gillespie \nFirst application of Pt electrodes in soil slurries", 1,
+                as.Date("2002-12-01"), "Jenkinson\nIntroduction of IRIS devices", 0.5,
+                as.Date("1981-01-01"), "Childs\nUse of dyes to test for ferrous Fe", 0.3,
+                as.Date("1995-02-01"), "Chapelle et al.\nHierarchical scheme for diagnosis of terminal\n electron-accepting processes (TEAPs)", 0.8 
+)
+
+
+# Plot the data
+p1 <- data %>%
+  ggplot(aes(x = year, y = displ, label = event)) +
+  geom_segment(aes(x = year, xend = year, y = 0, yend = displ)) +
+  geom_point(shape = 21, fill = "red", size = 3) +
+  geom_text_repel() +
+  geom_hline(yintercept=0, color = "black", size=0.3) +
+  labs(
+    title = "A history of redox measurements in soils/sediments/aquifers",
+    subtitle = "Author and achievement below",
+    caption = "Summarized by Kristof Dorau, 2021", 
+    x = "Year"
+  ) +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line = element_blank(),
+        axis.text.x = element_text(size = 8),
+        panel.background = element_rect("white")
+        )
+
+p1
+
+```

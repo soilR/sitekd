@@ -9,6 +9,6 @@ date: "2016-04-27T00:00:00Z"
 external_link: https://www.swapinstruments.com/
 
 image:
-  caption: Photo by Michel Vorenhout
+  caption: Image by SWAP instruments
   focal_point: Smart
 ---

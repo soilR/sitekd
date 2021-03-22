@@ -3,7 +3,7 @@ title: "Redox potential - Relevance of redox measurements"
 author: "Kristof Dorau"
 date: '2021-02-09'
 slug: null
-draft: no
+draft: false
 categories: []
 tags:
 - Customers
@@ -14,7 +14,7 @@ authors: []
 lastmod: ''
 featured: no
 image:
-  caption: "Logo by Kristof Dorau"
+  caption: "Photo by Kristof Dorau"
   focal_point: ""
   preview_only: no
 projects: []

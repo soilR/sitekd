@@ -21,36 +21,21 @@ projects: []
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-```{=html}
 <style>
 p.caption {
   font-size: 0.6em;
 }
 </style>
-```
 
-The determination of the soil's redox status is important and impacts a variety of processes of environmental concern:
+```{r echo = FALSE, message = FALSE}
 
--   greenhouse gas emission from soils,
--   nutrient availability,
--   pollutant dynamics, and
--   pedogenesis are only some examples.
-
-From a practical point of view, it is not sufficient to state that a soil is reducing or not. It is encouraged to classify and determine redox classes with a more distinct differentiation.
-
-```{r echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
 
 library(tidyverse)
 library(widgetframe)
 library(timevis)
-library(patchwork)
 library(rmarkdown)
 library(kableExtra)
-library(forcats)
-library(ggrepel)
-
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
-
 
 ## The theme must be in FRONT (!) of all ggplot or it will be overwritten
 my_theme <- theme(
@@ -60,6 +45,15 @@ my_theme <- theme(
   panel.border = element_blank())
 
 ```
+
+The determination of the soil's redox status is important and impacts a variety of processes of environmental concern:
+
+* greenhouse gas emission from soils,
+* nutrient availability,
+* pollutant dynamics, and
+* pedogenesis are only some examples. 
+
+From a practical point of view, it is not sufficient to state that a soil is reducing or not. It is encouraged to classify and determine redox classes with a more distinct differentiation. 
 
 ![*Differentiation of redox classes taken from Dorau 2016. The indices refer to the following references: ^1^Yu and Patrick 2004; ^2^Shrestha et al. 2014; ^3^Rennert and Mansfeldt 2005; ^4^Matern and Mansfeldt 2015; ^5^Hindersmann and Mansfeldt 2014; ^6^Dalkmann et al. 2013; ^7^Schuth et al. 2015; ^8^Mansfeldt and Overesch 2013; ^9^Peretyazhko and Sposito 2005; ^10^Schieber 2011; ^11^Morse et al. 1999; ^12^Picek et al. 2000*](01.PNG)
 

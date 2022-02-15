@@ -13,7 +13,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2021-02-09T18:19:59+01:00'
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 featured: no
 image:
   caption: ''

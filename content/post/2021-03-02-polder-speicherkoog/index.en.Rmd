@@ -1,21 +1,19 @@
 ---
 title: "Polder Speicherkoog"
 author: "Kristof Dorau"
-date: '2021-02-09'
-slug: null
 draft: false
-categories: []
 tags:
 - Redox classes
 - Environmental monitoring
 - Interpretation
 subtitle: ''
-summary: 'Some of the data that I will discuss within the redox section is originally from a site in Northern Germany - **Polder Speicherkoog**.'
+summary: ''
 authors: []
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 featured: no
 image:
-  caption: 
-  focal_point: Smart
+  caption: ''
+  focal_point: ''
   preview_only: no
 projects: []
 ---

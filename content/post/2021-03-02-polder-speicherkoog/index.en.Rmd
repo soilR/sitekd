@@ -1,14 +1,15 @@
 ---
 title: "Polder Speicherkoog"
 author: "Kristof Dorau"
-draft: false
+date: '2022-02-16'
+slug: polder-speicherkoog
+categories: []
 tags:
 - Redox classes
 - Environmental monitoring
 - Interpretation
 subtitle: ''
 summary: ''
-authors: []
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 featured: no
 image:
@@ -27,7 +28,7 @@ p.caption {
 </style>
 
 
-```{r echo = FALSE, message = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 
 knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
 

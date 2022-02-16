@@ -9,7 +9,7 @@ tags:
 - Introduction
 - Interpretation
 subtitle: ''
-summary: 'Rules of thumbs when evaluating and analyzing redox data'
+summary: 'Rules of thumb when evaluating and analyzing redox data'
 authors: []
 featured: no
 image:
@@ -17,19 +17,21 @@ image:
   focal_point: Smart
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p><em>The post was last updated on 2021-03-03.</em></p>
+<p><em>The post was last updated on 2022-02-15.</em></p>
 <style>
 p.caption {
   font-size: 0.6em;
 }
 </style>
 <p>As outlined in the introduction, redox potentials have a huge importance in soils and sediments since the data enables to obtain insights into particular processes that take place. Even though the measurement is very valuable, the interpretation is not so easy and people must be cautious. Hence, “measured values of E<sub>H</sub> obtained from a Pt electrode thus have only qualitative significance in soils” (Sposito, 2016) and the application, “in common with so many other measurements in nature, is in their interpretation by a knowledgeable observer” (Bohn, 1971).</p>
-<p>Here are some rules of thumbs:</p>
+<p>Here are some rules of thumb:</p>
 <ul>
 <li>Only use integers values without a decimal place ❗</li>
 <li>Some authors argue that values up to 50 mV have little meaning. Thus, if one value is 480 mV and the other is 490 mV there is no actual difference between the measurements. Keep in mind that the E<sub>H</sub> in soils ranges between -300 and +700 mV.</li>
@@ -38,26 +40,37 @@ p.caption {
 <li>Working with the mean and the standard deviation from a time series is good, but even better is to give information about the distribution of redox classes.</li>
 </ul>
 <p>I will illustrate the bullet points above in the following. The data is taken from our study site at Polder Speicherkoog (<a href="">see this post to see what the site features</a>):</p>
-<pre><code>## # A tibble: 3,982 x 46
-## # Groups:   day, month [3,982]
-##    day        month year   time  ST10  MP10  ST20  MP20  ST30  MP30  ST60  MP60
-##    &lt;date&gt;     &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 2010-04-01 04    2010   12.5  6.70     0  6.81     0  6.76     0  6.18     0
-##  2 2010-04-02 04    2010   36.5  6.42     0  6.29     0  6.31     0  6.15     0
-##  3 2010-04-03 04    2010   60.5  6.47     0  6.35     0  6.30     0  6.08     0
-##  4 2010-04-04 04    2010   84.5  7.45     0  6.82     0  6.56     0  6.09     0
-##  5 2010-04-05 04    2010  108.   7.28     0  7.00     0  6.80     0  6.22     0
-##  6 2010-04-06 04    2010  132.   7.80     0  7.17     0  6.91     0  6.32     0
-##  7 2010-04-07 04    2010  156.   8.15     0  7.49     0  7.19     0  6.47     0
-##  8 2010-04-08 04    2010  180.   8.55     0  7.95     0  7.58     0  6.65     0
-##  9 2010-04-09 04    2010  204.   8.43     0  7.96     0  7.64     0  6.83     0
-## 10 2010-04-10 04    2010  228.   8.67     0  8.22     0  7.81     0  6.96     0
-## # ... with 3,972 more rows, and 34 more variables: ST100 &lt;dbl&gt;, MP100 &lt;dbl&gt;,
-## #   ST150 &lt;dbl&gt;, MP150 &lt;dbl&gt;, EH10a &lt;dbl&gt;, EH10b &lt;dbl&gt;, EH10c &lt;dbl&gt;,
-## #   EH20a &lt;dbl&gt;, EH20b &lt;dbl&gt;, EH20c &lt;dbl&gt;, EH30a &lt;dbl&gt;, EH30b &lt;dbl&gt;,
-## #   EH30c &lt;dbl&gt;, EH60a &lt;dbl&gt;, EH60b &lt;dbl&gt;, EH60c &lt;dbl&gt;, EH100a &lt;dbl&gt;,
-## #   EH100b &lt;dbl&gt;, EH100c &lt;dbl&gt;, EH150a &lt;dbl&gt;, EH150b &lt;dbl&gt;, EH150c &lt;dbl&gt;,
-## #   WD &lt;dbl&gt;, WS &lt;dbl&gt;, AT &lt;dbl&gt;, RH &lt;dbl&gt;, AP &lt;dbl&gt;, pp &lt;dbl&gt;, SR &lt;dbl&gt;,
-## #   wt &lt;dbl&gt;, EC &lt;dbl&gt;, BAT &lt;dbl&gt;, LT &lt;dbl&gt;, WT &lt;dbl&gt;</code></pre>
 <p>How can we account for spatial heterogeneity?</p>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We can see that one electrode (60b) measures a lower E<sub>H</sub> throughout the years, thus, averaging the data per depth might be partially misleading or at least, we loose some information.</p>
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+eh60a
+</th>
+<th style="text-align:right;">
+eh60b
+</th>
+<th style="text-align:right;">
+eh60c
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+436.8272
+</td>
+<td style="text-align:right;">
+262.4366
+</td>
+<td style="text-align:right;">
+406.2416
+</td>
+</tr>
+</tbody>
+</table>
+<p>Boxplots are good and robust tools to visualize the distribution of data and in conjunction with the data behing the boxplot even more powerful. Most of the data occurs under oxidizing conditions between 500 and 750 mV and and we can easily see, that the E<sub>H</sub> for electrode 60b is lower with 260 mV compared with 440 (electrode 60a) and 410 (electrode 60c). This would be a good way to visualize the differences for electrodes from the same depth.</p>
+<p>Though, some of the information is lost on a temporal scale.</p>

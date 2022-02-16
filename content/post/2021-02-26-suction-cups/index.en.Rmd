@@ -1,17 +1,16 @@
 ---
-title: 'How to install soil suction cups '
-author: Kristof Dorau
-date: '2021-02-26'
+title: 'How to install soil suction cups'
 slug: suction-cups
-categories: []
+author: "Kristof Dorau"
+date: '2021-02-26'
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - soil solution
   - suction cups
   - Equipment
+summary: 'Description to install soil suction cups to collect soil solution'
 subtitle: ''
-summary: ''
-authors: []
-lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
+categories: []
 featured: no
 image:
   caption: ''
@@ -19,7 +18,34 @@ image:
   preview_only: no
 projects: []
 ---
-s
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<div style="text-align: justify">
+
+
+```{r include=FALSE}
+
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
+
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
+
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma")
+ 
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+```
+
 Recently, we have been to one of the study sites where I did research for my PhD. The weather was warm and it stayed dry and independent of this it is simply a nice place to be. It is located in Northern Germany close to the sea featuring the soil type Kalkmarsch (WRB: Calcaric Gleysol). A collegeau of mine needed to obtain soil solution for his project and therefore we installed soil suction cups. It is the first time for me to install these devices. If you consider to employ them for your studies I recommend an into depth article about the prerequisites and shortcomings by applying suction cups from Lutz Weihermüller [(in Field measurements Methods in Soil Science, 2019)](https://www.schweizerbart.de/publications/detail/isbn/9783443011093/Weihermuller_Wessel_Bothe_eds_Field?af=featured).
 
 ![Polder Speicherkoog in Northern Germany](01.jpg)

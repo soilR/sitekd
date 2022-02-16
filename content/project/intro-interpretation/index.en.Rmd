@@ -1,102 +1,70 @@
 ---
 title: "Interpretation of redox measurements"
+slug: intro-redox
 author: "Kristof Dorau"
-date: '2021-02-09'
-slug: null
-draft: true
-categories: []
+date: '2021-02-26'
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-- Introduction
-- Interpretation
-subtitle: ''
+  - Introduction
+  - Interpretation
 summary: 'Rules of thumb when evaluating and analyzing redox data'
-authors: []
+subtitle: ''
+categories: []
 featured: no
 image:
-  caption: 
-  focal_point: Smart
+  caption: ''
+  focal_point: ''
   preview_only: no
 projects: []
-editor_options: 
-  chunk_output_type: console
 ---
-
-
-
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
 
-```{r echo = FALSE, message = FALSE, warning = F}
+```{r include=FALSE}
 
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(rmarkdown)
-library(kableExtra)
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma")
+ 
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
 
+# Read the data 
+# dh_daily <- read_csv("content/project/intro-interpretation/koog_daily.csv")
+dh_daily <- read_csv("koog_daily.csv")
+
 
 ```
 
 As outlined in the introduction, redox potentials have a huge importance in soils and sediments since the data enables to obtain insights into particular processes that take place. Even though the measurement is very valuable, the interpretation is not so easy and people must be cautious. Hence, “measured values of E~H~ obtained from a Pt electrode thus have only qualitative significance in soils” (Sposito, 2016) and the application, “in common with so many other measurements in nature, is in their interpretation by a knowledgeable observer” (Bohn, 1971). 
 
-Here are some rules of thumb:
+Here are some general rules of thumb:
 
-* Only use integers values without a decimal place ❗ 
+* Only use integer values, a decimal place is not required ❗ 
 * Some authors argue that values up to 50 mV have little meaning. Thus, if one value is 480 mV and the other is 490 mV there is no actual difference between the measurements. Keep in mind that the E~H~ in soils ranges between -300 and +700 mV. 
 * It is sometimes better to interpret the development of the E~H~ (is it increasing/decreasing; is the decrease straightforward or stopped) than only consider a snapshot in time. 
 * Don't take individual readings from only one Pt electrode as valid. In most of our studies we employ at least **three individual electrodes per depth**.  Some authors suggest to use even eight to ten electrodes per depth (Cogger et al. 1992).
 * Working with the mean and the standard deviation from a time series is good, but even better is to give information about the distribution of redox classes. 
 
-I will illustrate the bullet points above in the following. The data is taken from our study site at Polder Speicherkoog ([see this post to see what the site features]()):
-
-```{r echo = FALSE, message=FALSE}
-
-koog <- readr::read_delim("data.csv", delim = ";",
-                          col_types = cols(
-                          # col_datetime parse the input character representations to a date/time
-                          # POSIXct stores seconds since UNIX epoch (+some other data)
-                          # POSIXlt stores a list of day, month, year, hour, etc.
-                          date = col_datetime(format = "%d.%m.%Y %T")
-                        ))
-
-# Adds + 207 mV to all columns that start with EH
-koog <- koog %>%
-  mutate(across(contains("EH"), ~. +207)) # The tilde is used for a statistical model (left side is response and right is explanatory variables)
-
-# Adds a timestamp for daily, monthly, and yearly data aggregation
-koog <- koog %>%
-  mutate(day = as.Date(format(date, "%Y-%m-%d")),
-         month = format(date, "%m"),
-         year = format(date, "%Y")
-         )
-
-# Aggregate the hourly data into daily data
-dh_daily <- koog %>%
-  group_by(day, month, year) %>%
-  summarise_if(is.numeric, mean, na.rm = T) # only summarizes numeric values by mean)
-
-```
+I will illustrate the bullet points above in the following. The data is taken from our study site at Polder Speicherkoog ([see this post to see what the site features](https://www.kristofdorau.de/post/polder-speicherkoog/)):
 
 How can we account for spatial heterogeneity?
 
 ```{r}
-
 # Include the clay lense and show how to deal with it. 
 #Highlight a particular sequence, for example electrode 60b
 dh_daily %>%
@@ -152,13 +120,114 @@ dh_daily %>%
   janitor::clean_names() %>%
   select(eh60a:eh60c) %>%
   summarise_all(.funs = mean, na.rm=T) %>%
+  round(., 0) %>%
   kableExtra::kable()
 
 ```
 
 Boxplots are good and robust tools to visualize the distribution of data and in conjunction with the data behind the boxplot (e.g. by jittered points or as density distribution with the area within this example) even more powerful. Most of the data occurs under oxidizing conditions between 500 and 750 mV and and we can easily see, that the E~H~ for electrode 60b is lower with 260 mV compared with 440 (electrode 60a) and 410 (electrode 60c). This would be a good way to visualize the differences for electrodes from the same depth. 
 
-Presumably --> clay lense is responsible 
+What might be the reason for this behavior? "Higher OC and clay contents presumably caused stronger reducing conditions around the Pt electrode (as a result of higher microbial activity and soil moisture), supporting the assumption that one out of three Pt tips dips into the clay lens and, in general, causes strongly reducing soil conditions." [Dorau and Mansfeldt, 2016](https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.201600060)
 
-Though, some of the information is lost on a temporal scale. 
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Steel cylinder taken from the depth where the Pt electrodes were placed"}
+knitr::include_graphics("claylense.png")
+```
+
+However, some of the information is certainly lost because a boxplot does not tell at which time of the year a drop or increase in E~H~ occurs. Therefore it might be a good idea to split down the data on a monthly basis:
+
+```{r}
+dh_daily %>%
+  group_by(month) %>%
+  ggplot(aes(month, eh60a, group = month)) +
+  geom_boxplot() +
+  coord_cartesian(clip = "off") +
+  stat_summary(fun = mean, shape = 21, fill = "red") +
+  labs(
+    title = "Redox potential in 60 cm depth on a monthly basis",
+    x = "Month of the year",
+    y = expression(E[H]~(mV))
+  ) +
+  my_theme
+
+```
+
+We can see that the E~H~ is at weakly reducing conditions from January to April and strongly increases towards May associated with a drop in water table (data not shown) and successive aeration of the soil profile. This gives a good but still coarse impression of the temporal dynamics. However, down scaling on hourly basis might be a good idea to have a better impression about the aeration process. 
+
+```{r}
+dh_daily %>%
+  filter(day > as.Date("2010-05-01") & day < as.Date("2010-06-01")) %>%
+  ggplot(aes(day, eh60a)) +
+  geom_line() +
+  coord_cartesian(clip = "off") +
+  stat_summary(fun = mean, shape = 21, fill = "red") +
+  labs(
+    title = "Temporal development of the redox potential in 60 cm depth on a daily basis",
+    x = "Month of the year",
+    y = expression(E[H]~(mV))
+  ) +
+  annotate(geom = "text", x = as.Date("2010-05-25"), y = -50, label = "Aeration of the soil depth takes\nplace within a couple of days", size = 4) +
+  my_theme
+
+```
+
+If manual readings are taken during this particular moment, obviously, the moment to conduct the measurement tells a lot about the conditions. "Careful consideration should therefore be
+given to establishing a precise moment for measurement in the monitoring program (e.g., for sampling of soil solution). Nevertheless, even daily E~H~ readings can be subject to short-
+comings. Characterization of the soil redox status in the field at 7 am (40 mV) compared with 8 pm (420 mV), will lead to a faulty and misleading interpretation of the in situ biogeochemical conditions." [Dorau and Mansfeldt, 2016](https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.201600060)
+
+Finally, some words about redox classes in soils and why a differentiation is important ([more details can be found here](https://www.kristofdorau.de/project/intro-redox-classes/)). Below we can see the E~H~ for the particular year 2011. 
+
+```{r}
+
+dh_daily %>%
+  filter(day > as.Date("2011-01-01") & day < as.Date("2011-12-31")) %>%
+  ggplot(aes(day, eh60a)) +
+  geom_hline(yintercept = c(-100, 100, 300), color = "red") +
+  geom_line() +
+  coord_cartesian(ylim = c(-300, 800), clip = "off") +
+  labs(
+    title = "Temporal development of the redox potential in 60 cm depth",
+    x = "Time",
+    y = expression(E[H]~(mV))
+  ) +
+  my_theme
+
+# Calculate mean and SD
+dh_daily %>%
+  filter(day > as.Date("2011-01-01") & day < as.Date("2011-12-31")) %>%
+  select(eh60a) %>%
+  summarise_at(.vars = "eh60a", .funs = list(mean = mean, SD = sd), na.rm = T) %>%
+  round(., 0) %>%
+  kableExtra::kable()
+
+```
+
+We could tell that the E~H~ is 346 ± 234 but thereby a lot of information is lost that we want to highlight for others. A better way would be to tell for how much of the time the E~H~ prevailed within a particular redox class, for instance:
+
+- oxidizing conditions prevail for 41% of the time
+- weakly reducing conditions prevail for 56% of the time
+- moderately reducing conditions for only 3% of the time 
+- strongly reducing conditions were not achieved
+
+```{r echo = F, eval = F}
+# Calculate redox class distribution
+dh_daily %>%
+  filter(day > as.Date("2011-01-01") & day < as.Date("2011-12-31")) %>%
+  select(eh60a) %>%
+  mutate(
+    ox = ifelse(eh60a > 300, eh60a, NA),
+    weak = ifelse(eh60a > 100 & eh60a < 300, eh60a, NA),
+    mod = ifelse(eh60a > -100 & eh60a < 100, eh60a, NA),
+    strong = ifelse(eh60a < -100, eh60a, NA)
+  ) %>%
+  summarize_all(funs(sum(is.na(.)) / length(.))) %>%
+  pivot_longer(cols = ox:strong) %>%
+  mutate(value = 1- value) %>%
+  mutate(name = fct_relevel(name, "ox", "weak", "mod", "strong")) %>%
+  ggplot(aes(as.character(eh60a), value, fill = name)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels=percent) +
+  coord_flip() +
+  my_theme
+
+```
 

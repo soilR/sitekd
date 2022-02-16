@@ -21,23 +21,23 @@ projects: []
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
-```{r echo = FALSE, message = FALSE}
 
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+```{r include=FALSE}
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(rmarkdown)
-library(kableExtra)
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
+
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra")
+
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 

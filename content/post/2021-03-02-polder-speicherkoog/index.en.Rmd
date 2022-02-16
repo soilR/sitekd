@@ -1,16 +1,16 @@
 ---
-title: "Polder Speicherkoog"
+title: Polder Speicherkoog
+slug: polder-speicherkoog
 author: "Kristof Dorau"
 date: '2022-02-16'
-slug: polder-speicherkoog
-categories: []
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
 - Redox classes
 - Environmental monitoring
 - Interpretation
+summary: 'Information about redox measurements at Polder Speicherkoog'
 subtitle: ''
-summary: ''
-lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
+categories: []
 featured: no
 image:
   caption: ''
@@ -21,27 +21,23 @@ projects: []
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
 
-```{r echo = FALSE, message = FALSE, warning = FALSE}
+```{r include=FALSE}
 
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(patchwork)
-library(rmarkdown)
-library(kableExtra)
-library(forcats)
-library(ggrepel)
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma")
+ 
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 
@@ -49,65 +45,34 @@ my_theme <- theme(
   panel.border = element_blank())
 
 
+# Read the data 
+dh_daily <- read_csv("koog_daily.csv")
+
 ```
 
-Some of the data that I will discuss within the redox section is originally from a site in Northern Germany - **Polder Speicherkoog**. [Tim](https://geographie.uni-koeln.de/forschung/arbeitsgruppen/bodengeographie-bodenkunde/mitarbeiter/mansfeldt-tim) conducted some of his first experiments at this site with Pt electrodes that were continuously deployed for a 20-month period. In 1989, little was known whether self-constructed redox electrodes are capable to get proper data for such a long period ( 👉️ [see the article](https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.19931560403)). 
+Some of the data that I will discuss within the redox section is originally from a site in Northern Germany - **Polder Speicherkoog**. [Tim](https://geographie.uni-koeln.de/ag-mansfeldt/mitarbeiter/mansfeldt-tim) conducted some of his first experiments at this site with Pt electrodes that were continuously deployed for a 20-month period. In 1989, little was known whether self-constructed redox electrodes are capable to get proper data for such a long period ( 👉️ [see the article](https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.19931560403)). 
 
-<p align="center">
-![Polder Speicherkoog](01.jpg)
-</p>
+
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Location of the monitoring station at Polder Speicherkoog"}
+knitr::include_graphics("01.jpg")
+```
 
 Since 1989, a lot of things with regard to E~H~ measurements evolved. We don't need to go once a week to the field, independent of the weather⛈️ , and storing data on a drive is no issue anymore. Meanwhile, we can sit in our cosy chair, drink ☕ and enjoy the benefits of automatic data logging, data transmission via GPRS and downloading data from a webserver. The temporal interval is also not an issue anymore (daily, hourly, every minute...you name it). 
 
 Since April 2010, we measure a variety of parameters at Polder Speicherkoog (see sketch below). The measurement depths are in 10, 20, 40, 60, 100 and 150 cm soil depth. The spatial resolution to determine redox dynamics over time is quit high, even though when dealing with E~H~ you would love to have electrodes installed every cm 😎 I guess costs and feasibility of this wish render it impossible and we have to wait for another decade to solve some of the mysteries about spatial heterogeneity. 
 
-![Parameters determined at Polder Speicherkoog](02.png)
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Parameters determined at Polder Speicherkoog"}
+knitr::include_graphics("02.png")
+```
 
 What makes this site particularly interesting with respect to redox dynamics?!
 
 First of all, it features intense water table draw downs in the summer time while the water table is very high at the surface during the winter time. Two meters of water table decline is intense. 
 
 ```{r}
-
-koog <- readr::read_delim("data.csv", delim = ";",
-                          col_types = cols(
-                          # col_datetime parse the input character representations to a date/time
-                          # POSIXct stores seconds since UNIX epoch (+some other data)
-                          # POSIXlt stores a list of day, month, year, hour, etc.
-                          date = col_datetime(format = "%d.%m.%Y %T")
-                        ))
-
-# Adds + 207 mV to all columns that start with EH
-koog <- koog %>%
-  mutate(across(contains("EH"), ~. +207)) # The tilde is used for a statistical model (left side is response and right is explanatory variables)
-
-# Adds a timestamp for daily, monthly, and yearly data aggregation
-koog <- koog %>%
-  mutate(day = as.Date(format(date, "%Y-%m-%d")),
-         month = format(date, "%m"),
-         year = format(date, "%Y")
-         )
-
-# Aggregate the hourly data into daily data
-dh_daily <- koog %>%
-  group_by(day, month, year) %>%
-  summarise_if(is.numeric, mean, na.rm = T) # only summarizes numeric values by mean)
-
-# R want to have the data in a long format rather than a wide format that most are more familiar with (e.g. by working with excel, origin, etc.)
-dh_long <- dh_daily %>%
-  pivot_longer(contains("EH"), names_to = "EH", values_to = "value_EH")
-
-# We can manually specify the order of factors by ft_relevel from the forcats package
-dh_long <- dh_long %>%
-   mutate(EH = fct_relevel(EH, "EH10a","EH10b","EH10c",
-                                     "EH20a","EH20b","EH20c",
-                                     "EH30a","EH30b","EH30c",
-                                     "EH60a","EH60b","EH60c",
-                                     "EH100a","EH100b","EH100c",
-                                     "EH150a","EH150b","EH150c"))
-
-dh_long %>%
-  ggplot(aes(day, WT)) +
+# Plot the data
+dh_daily %>%
+  ggplot(aes(day, wt)) +
   geom_line() +
   facet_wrap(~year, scales = "free_x") +
   labs(
@@ -124,11 +89,13 @@ Second, with the declining water table oxygen is capable to diffuse downwards th
 
 ```{r}
 
-dh_long %>%
-  filter(EH %in% c("EH10a","EH60a", "EH150a")) %>%
-  ggplot(aes(day, value_EH, color = EH)) +
+dh_daily %>%
+  select(day, "eh10a","eh60a", "eh150a") %>%
+  pivot_longer(cols = contains("eh")) %>%
+  mutate(name = fct_relevel(name, "eh10a","eh60a", "eh150a")) %>%
+  ggplot(aes(day, value, color = name)) +
   geom_line() +
-  facet_wrap(~EH, scales = "free_x", nrow = 3) +
+  facet_wrap(~name, scales = "free_x", nrow = 3) +
   labs(
     title = "Redox potential development from 2010-2020",
     x = "Time", 
@@ -140,13 +107,15 @@ dh_long %>%
 
 ```
 
-As you can see, if the water table declines underneath the 60 cm depth the pores start to drain and the soil profile becomes successively aerated. In most cases, the E~H~ response is straightforward with short a delay ranging from some days to a couple of weeks. If you take a look at the water table in the summer of 2018 (which was above average warm 🔥 and I can tell, because we live in the top floor 😅 ), we have no response of the EH in 150 cm soil depth. Why is that ❓️ It is because the microorganisms in the soil consume the O~2~ (aerobic respiration) on the way from the soil surface towards the location where the Pt tip is positioned in 150 cm soil depth.  Even though the pores in the subsoil drained considerably, the voids are filled with CO~2~ and/or CH~4~ rather than O~2~. 
+As you can see, if the water table declines underneath the 60 cm depth the pores start to drain and the soil profile becomes successively aerated. In most cases, the E~H~ response is straightforward with short a delay ranging from some days to a couple of weeks. If you take a look at the water table in the summer of 2018 (which was above average warm 🔥 and I can tell, because we live in the top floor 😅 ), we have no response of the E~H~ in 150 cm soil depth. Why is that ❓️ It is because the microorganisms in the soil consume the O~2~ (aerobic respiration) on the way from the soil surface towards the location where the Pt tip is positioned in 150 cm soil depth.  Even though the pores in the subsoil drained considerably, the voids are filled with CO~2~ and/or CH~4~ rather than O~2~. 
 
 ```{r}
 
-dh_long %>%
-  filter(EH %in% c("EH10a", "EH60b", "EH150a")) %>%
-  ggplot(aes(WT, value_EH, color = EH)) +
+dh_daily %>%
+  select(day, wt, "eh10a","eh60a", "eh150a") %>%
+  pivot_longer(cols = contains("eh")) %>%
+  mutate(name = fct_relevel(name, "eh10a","eh60a", "eh150a")) %>%
+  ggplot(aes(wt, value, color = name)) +
   geom_point(shape = 21, fill = "white", alpha = 0.2) +
   geom_smooth(size = 2) +
   coord_cartesian(expand = FALSE) +
@@ -156,7 +125,7 @@ dh_long %>%
     x = "Water table (cm below ground)", 
     y = "Redox potential (mV)"
   ) +
-  geom_vline(xintercept = -60, linetype = "dashed") +
+  geom_vline(xintercept = 60, linetype = "dashed") +
   scale_color_discrete(name = "Depths", labels = c("10 cm", "60 cm", "150 cm")) +
   my_theme
 

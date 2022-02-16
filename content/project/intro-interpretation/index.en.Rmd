@@ -47,7 +47,6 @@ my_theme <- theme(
 # dh_daily <- read_csv("content/project/intro-interpretation/koog_daily.csv")
 dh_daily <- read_csv("koog_daily.csv")
 
-
 ```
 
 As outlined in the introduction, redox potentials have a huge importance in soils and sediments since the data enables to obtain insights into particular processes that take place. Even though the measurement is very valuable, the interpretation is not so easy and people must be cautious. Hence, “measured values of E~H~ obtained from a Pt electrode thus have only qualitative significance in soils” (Sposito, 2016) and the application, “in common with so many other measurements in nature, is in their interpretation by a knowledgeable observer” (Bohn, 1971). 

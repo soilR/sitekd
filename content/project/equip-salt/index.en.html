@@ -1,30 +1,62 @@
 ---
 title: "Salt bridge"
+slug: salt-bridge
 author: "Kristof Dorau"
-date: '2021-02-09'
-slug: null
-draft: true
-categories: []
+date: '2022-02-17'
+draft: false
+lastmod: "18 Februar, 2022"
 tags:
-- Introduction
-- Interpretation
-subtitle: ''
+  - Equipment
 summary: 'Click to learn what a salt bridge is'
-authors: []
+subtitle: ''
+categories: []
 featured: no
 image:
-  caption: Photo by Shirish Suwal on Unsplash
-  focal_point: Smart
+  caption: ''
+  focal_point: ''
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p><em>The post was last updated on 2021-03-03.</em></p>
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<p><em>The post was last updated on 2022-02-18.</em></p>
+<div style="text-align: justify">
+
+
+
+
+<p>When measuring E<sub>H</sub> in soils electrons flow from the platinum tipped electrode towards the reference electrode (reducing conditions; high e<sup>-</sup> activity close to the Pt surface) or vice versa (oxidizing conditions; low e<sup>-</sup> activity close to the Pt surface). This requieres that the electrical circuit is closed and that both electrodes have a proper contact to the soil matrix. A proper contact of the reference electrode with the soil matrix is important because in order to maintain charge balance within the electrolyte solution of the reference electrode, ions are capable to diffuse outside and inside a porous ceramic diaphragm into the soil. If the contact is disrupted, the release of ions is hampered and a potential might build up or the measured values become erratic. Since the the electrolyte solution is typically a potassium chloride (KCl) solution of variable molarity, K<sup>+</sup> ions diffuse outside the electrode when the E<sub>H</sub> is positive and Cl<sup>-</sup> ions when the E<sub>H</sub> is negative (see sketch below).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="04.png" alt="Scheme for measuring redox potentials. Source: [Dorau, 2016](https://kups.ub.uni-koeln.de/7439/1/Dissertation_Dorau.pdf), adapted from Fiedler et al. 2007; Reddy and DeLaune 2008; Strawn et al. 2015" width="100%" />
+<p class="caption">
+Figure 1: Scheme for measuring redox potentials. Source: <a href="https://kups.ub.uni-koeln.de/7439/1/Dissertation_Dorau.pdf">Dorau, 2016</a>, adapted from Fiedler et al. 2007; Reddy and DeLaune 2008; Strawn et al. 2015
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="02.png" alt="PVC salt bridge filled with a 3 M KCl agar gel with the smaller reference electrode at the side." width="100%" />
+<p class="caption">
+Figure 2: PVC salt bridge filled with a 3 M KCl agar gel with the smaller reference electrode at the side.
+</p>
+</div>
+<blockquote>
+<p>📚 Literature recommendation is the chapter about measuring redox potentials in soils from Tim which gives a very detailed overview. <a href="https://www.schweizerbart.de/publications/detail/isbn/9783443011093">Field Measurement Methods in Soil Science</a></p>
+</blockquote>
+<blockquote>
+<p>The main advantage of a salt bridge is to (i) extent the lifetime and (ii) applicability under dry soil conditions of the reference electrode. When the reference electrode is placed inside the agar gel within the salt bridge, the internal reference electrode electrolyte remains stable for a longer time since leaching is slowed down and under dry soil conditions the larger surface of the salt bridge is better conductive, thus, the migration of ions (K<sup>+</sup> or Cl<sup>-</sup>) is not disrupted.</p>
+</blockquote>
+<p>Technical problems with E<sub>H</sub> measurements in soils are known for a long time and therefore recommendations to use a salt bridge date back a long time ago, e.g., the study by <a href="https://www.tandfonline.com/doi/abs/10.1080/00103628309367398">Veneman and Pickering (1983)</a>. The body consists of a PVC tube with holes in some depths. The salt bridge is typically 30 to 50 cm long and extents into the subsoil, where soil water contents are higher and a better electrical contact is achieved. The PVC tube is then filled with a saturated KCl solution (350 g L<sup>-1</sup>), heated and by adding agar solution becomes thick forming a gel during cooling. The reference electrode is then pushed inside the gel and voila… the electrical circuit between the reference electrode - KCl gel - soil is closed.</p>
+<p>❗ Use of a salt bridge has advantages than simply pushing the reference electrode directly into the soil.</p>
+<p>From time to time (maybe every year or biannual), the agar gel needs to be renewed because solubilisation and evapotranspiration foster shrinkage of the gel and under worst conditions the reference electrode hangs in the air. The result would be erratic and faulty E<sub>H</sub> readings. Below is an example of E<sub>H</sub> data before and after maintenance of the agar gel inside the salt bridge.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="05.png" alt="Please note the effect of maintenance when the agar gel is refreshed. The diurnal redox amplitude is drastically smaller." width="100%" />
+<p class="caption">
+Figure 3: Please note the effect of maintenance when the agar gel is refreshed. The diurnal redox amplitude is drastically smaller.
+</p>
+</div>
+<p>Directly after renewal of the agar gel diel E<sub>H</sub> (ΔE<sub>H</sub> = daily E<sub>Hmax</sub> - daily E<sub>Hmin</sub>) was drastically smaller, indicating that a diel pattern is likely not the consequence of a microbial related pattern - as some authors propose - rather it is technical related noise being present in the data.</p>
+<p>🔍 “Redox measurements should not be considered a routine determination and cautious handling of E<sub>H</sub> data by physical sound corrections is urgently needed…” (More information about the impact of soil temperature on diel E<sub>H</sub> can be found in our recent article: <a href="https://pubs.rsc.org/en/content/articlelanding/2021/EM/D1EM00254F">Dorau et al. 2022, Temperature-induced diurnal redox potential in soil</a>.</p>
+<p>The salt bridge is certainly one part of a difficult puzzle to carefully measure E<sub>H</sub> in soils and obtain reliable data.</p>

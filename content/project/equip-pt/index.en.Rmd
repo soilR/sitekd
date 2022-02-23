@@ -1,50 +1,66 @@
 ---
-title: "Redox (e.g. platinum) electrode"
-author: "Kristof Dorau"
-date: '2021-02-09'
+title: "Redox electrode"
 slug: null
+author: "Kristof Dorau"
+date: '2022-02-18'
 draft: true
-categories: []
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-- Equipment
-- Redox electrode
+  - Equipment
+summary: 'Click to learn what a **redox electrode** (e.g. platinum) is'
 subtitle: ''
-summary: 'Click to learn what a **platinum electrode** is'
-authors: []
+categories: []
 featured: no
 image:
-  caption: Photo by Shirish Suwal on Unsplash
-  focal_point: Smart
+  caption: ''
+  focal_point: ''
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
 
-```{r echo = FALSE, message = FALSE}
+```{r include=FALSE}
 
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(rmarkdown)
-library(kableExtra)
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma")
+ 
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
 
-
 ```
 
+One important characteristic of redox electrodes is, the material used to measure the EH must be non-selective. This means, it is able to accept or release electrons depending on the conditions of the soil without participating itself in electron transfer reactions. Platinum (Pt) is commonly used with a standard electrode potential of 1,118 mV 
+
+Pt 	Pt^2+^ + 2^e−^ 	⇌ 	Pt(s) 	1,188
+
+Zinc, for instance, would be a bad choice for the soil environment with EH range between -300 and + 800 mV, whereby Zn would be 
+
+Zn 	Zn^2+^ + 2^e−^ 	⇌ 	Zn(s) 	-7618
+
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Scheme for measuring redox potentials. Source: [Dorau, 2016](https://kups.ub.uni-koeln.de/7439/1/Dissertation_Dorau.pdf), adapted from Fiedler et al. 2007; Reddy and DeLaune 2008; Strawn et al. 2015"}
+knitr::include_graphics("featured.jpg")
+```
+
+# Example....Pt electrode with electron flow from left to right
+
+```{r chunk-label, fig.show='animate', ffmpeg.format='gif', dev='jpeg'}
+for (i in 1:10) plot(runif(100), ylim = c(0, 1)) # for example
+```

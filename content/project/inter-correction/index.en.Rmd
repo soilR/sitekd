@@ -1,13 +1,12 @@
 ---
-title: "Reference electrode"
+title: "Correction of redox measurements"
 slug: null
 author: "Kristof Dorau"
-date: '2022-02-17'
-draft: true
+date: '2021-02-26'
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-  - Equipment
-summary: 'Click to learn what a **reference electrode** is'
+  - Interpretation
+summary: 'An overview by which factors redox measurements can (should?) be corrected.'
 subtitle: ''
 categories: []
 featured: no
@@ -16,8 +15,6 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-editor_options: 
-  chunk_output_type: console
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
@@ -44,6 +41,10 @@ my_theme <- theme(
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
+
+# Read the data 
+# dh_daily <- read_csv("content/project/intro-interpretation/koog_daily.csv")
+dh_daily <- read_csv("koog_daily.csv")
 
 ```
 

@@ -1,28 +1,49 @@
 ---
-title: "Timeline - A brief history of redox measurements"
+title: "Timeline"
 author: "Kristof Dorau"
-date: '2021-02-09'
+date: "2021-02-09"
 slug: null
-draft: no
+draft: false
 categories: []
 tags:
-- Introduction
-- Redox classes
-- History
+- Fundamentals
 subtitle: ''
-summary: "A summary of important findings and technological breakthroughs"
+summary: "A brief summary of important findings and technological breakthroughs"
 authors: []
-lastmod: ''
 featured: no
 image:
   caption: Photo by Aron Visuals on Unsplash
-  focal_point: ""
+  focal_point: Smart
   preview_only: no
 projects: []
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
+<div style="text-align: justify">
+
+
+```{r include=FALSE}
+
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
+
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
+
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra")
+
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+```
 
 The following timeline was created with the R package **timevis** ⌚️ [Link](https://daattali.com/shiny/timevis-demo/). It offers a huge flexibility since it enables to pan along the timeline, zoom in and zoom out. This summary of the history of redox measurements in soils is based on my own findings and literature I had cited previously.  Please give me a note and I will edit the timeline with further findings.
 For a better overview, I built groups of the commonly employed methods to characterize the soil redox status:
@@ -37,7 +58,7 @@ For a better overview, I built groups of the commonly employed methods to charac
     + ...
 
 
-```{r echo = FALSE, message = FALSE}
+```{r echo = FALSE, message = FALSE, eval = FALSE}
 
 library(tidyverse)
 library(widgetframe)

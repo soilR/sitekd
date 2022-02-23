@@ -1,13 +1,12 @@
 ---
-title: "Reference electrode"
+title: "Factors with impact on the soil redox status."
 slug: null
 author: "Kristof Dorau"
-date: '2022-02-17'
-draft: true
+date: '2021-02-26'
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-  - Equipment
-summary: 'Click to learn what a **reference electrode** is'
+  - Interpretation
+summary: 'An overview which factors have an impact on the soil redox status.'
 subtitle: ''
 categories: []
 featured: no
@@ -16,8 +15,6 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-editor_options: 
-  chunk_output_type: console
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*

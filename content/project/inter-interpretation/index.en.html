@@ -1,0 +1,117 @@
+---
+title: "Interpretation of redox measurements"
+slug: intro-redox
+author: "Kristof Dorau"
+date: '2021-02-26'
+lastmod: "16 Februar, 2022"
+tags:
+  - Introduction
+  - Interpretation
+summary: 'Rules of thumb when evaluating and analyzing redox data'
+subtitle: ''
+categories: []
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p><em>The post was last updated on 2022-02-16.</em></p>
+<div style="text-align: justify">
+
+
+
+
+<p>As outlined in the introduction, redox potentials have a huge importance in soils and sediments since the data enables to obtain insights into particular processes that take place. Even though the measurement is very valuable, the interpretation is not so easy and people must be cautious. Hence, “measured values of E<sub>H</sub> obtained from a Pt electrode thus have only qualitative significance in soils” (Sposito, 2016) and the application, “in common with so many other measurements in nature, is in their interpretation by a knowledgeable observer” (Bohn, 1971).</p>
+<p>Here are some general rules of thumb:</p>
+<ul>
+<li>Only use integer values, a decimal place is not required ❗</li>
+<li>Some authors argue that values up to 50 mV have little meaning. Thus, if one value is 480 mV and the other is 490 mV there is no actual difference between the measurements. Keep in mind that the E<sub>H</sub> in soils ranges between -300 and +700 mV.</li>
+<li>It is sometimes better to interpret the development of the E<sub>H</sub> (is it increasing/decreasing; is the decrease straightforward or stopped) than only consider a snapshot in time.</li>
+<li>Don’t take individual readings from only one Pt electrode as valid. In most of our studies we employ at least <strong>three individual electrodes per depth</strong>. Some authors suggest to use even eight to ten electrodes per depth (Cogger et al. 1992).</li>
+<li>Working with the mean and the standard deviation from a time series is good, but even better is to give information about the distribution of redox classes.</li>
+</ul>
+<p>I will illustrate the bullet points above in the following. The data is taken from our study site at Polder Speicherkoog (<a href="https://www.kristofdorau.de/post/polder-speicherkoog/">see this post to see what the site features</a>):</p>
+<p>How can we account for spatial heterogeneity?</p>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see that one electrode (60b) measures a lower E<sub>H</sub> throughout the years, thus, averaging the data per depth might be partially misleading or at least, we loose some information.</p>
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+eh60a
+</th>
+<th style="text-align:right;">
+eh60b
+</th>
+<th style="text-align:right;">
+eh60c
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+437
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+406
+</td>
+</tr>
+</tbody>
+</table>
+<p>Boxplots are good and robust tools to visualize the distribution of data and in conjunction with the data behind the boxplot (e.g. by jittered points or as density distribution with the area within this example) even more powerful. Most of the data occurs under oxidizing conditions between 500 and 750 mV and and we can easily see, that the E<sub>H</sub> for electrode 60b is lower with 260 mV compared with 440 (electrode 60a) and 410 (electrode 60c). This would be a good way to visualize the differences for electrodes from the same depth.</p>
+<p>What might be the reason for this behavior? “Higher OC and clay contents presumably caused stronger reducing conditions around the Pt electrode (as a result of higher microbial activity and soil moisture), supporting the assumption that one out of three Pt tips dips into the clay lens and, in general, causes strongly reducing soil conditions.” <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.201600060">Dorau and Mansfeldt, 2016</a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="claylense.PNG" alt="Steel cylinder taken from the depth where the Pt electrodes were placed" width="100%" />
+<p class="caption">
+Figure 1: Steel cylinder taken from the depth where the Pt electrodes were placed
+</p>
+</div>
+<p>However, some of the information is certainly lost because a boxplot does not tell at which time of the year a drop or increase in E<sub>H</sub> occurs. Therefore it might be a good idea to split down the data on a monthly basis:</p>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see that the E<sub>H</sub> is at weakly reducing conditions from January to April and strongly increases towards May associated with a drop in water table (data not shown) and successive aeration of the soil profile. This gives a good but still coarse impression of the temporal dynamics. However, down scaling on hourly basis might be a good idea to have a better impression about the aeration process.</p>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If manual readings are taken during this particular moment, obviously, the moment to conduct the measurement tells a lot about the conditions. “Careful consideration should therefore be
+given to establishing a precise moment for measurement in the monitoring program (e.g., for sampling of soil solution). Nevertheless, even daily E<sub>H</sub> readings can be subject to short-
+comings. Characterization of the soil redox status in the field at 7 am (40 mV) compared with 8 pm (420 mV), will lead to a faulty and misleading interpretation of the in situ biogeochemical conditions.” <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jpln.201600060">Dorau and Mansfeldt, 2016</a></p>
+<p>Finally, some words about redox classes in soils and why a differentiation is important (<a href="https://www.kristofdorau.de/project/intro-redox-classes/">more details can be found here</a>). Below we can see the E<sub>H</sub> for the particular year 2011.</p>
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+346
+</td>
+<td style="text-align:right;">
+234
+</td>
+</tr>
+</tbody>
+</table>
+<p>We could tell that the E<sub>H</sub> is 346 ± 234 but thereby a lot of information is lost that we want to highlight for others. A better way would be to tell for how much of the time the E<sub>H</sub> prevailed within a particular redox class, for instance:</p>
+<ul>
+<li>oxidizing conditions prevail for 41% of the time</li>
+<li>weakly reducing conditions prevail for 56% of the time</li>
+<li>moderately reducing conditions for only 3% of the time</li>
+<li>strongly reducing conditions were not achieved</li>
+</ul>

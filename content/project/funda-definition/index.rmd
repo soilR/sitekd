@@ -1,0 +1,94 @@
+---
+title: "Redox potential - What is it?"
+author: "Kristof Dorau"
+date: "2021-02-09"
+slug: null
+draft: false
+categories: []
+tags:
+- Fundamentals
+subtitle: ''
+summary: "Click to see what the **redox potential** is and why it is important in soil science."
+authors: []
+featured: no
+image:
+  caption: 
+  focal_point: Smart
+  preview_only: no
+projects: []
+---
+
+*The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
+
+<div style="text-align: justify">
+
+
+```{r include=FALSE}
+
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
+
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
+
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra")
+
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
+my_theme <- theme(
+  panel.background = element_rect(fill = "white", color = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(), 
+  panel.border = element_blank())
+
+```
+
+The **redox potential** (**E~H~**; in mV or V) is a measure of the electron availability in soils. It affects the oxidation states of prominent elements occuring in soils, e.g. 
+
+* oxygen (O~2~)
+* nitrogen (N; as N^V^ in nitrate)
+* manganese (Mn; as Mn^III,IV^ in oxides)
+* iron (Fe; as Fe^III^ in oxides)
+* sulfur (S; as S^VI^ in sulfate)
+
+Soils habitat microorganisms, which are to a great extent responsible that redox reactions take place. Imagine the soil as a place where electrons are continuously shuttled from one place to another. The soil organic matter (SOM) content is the biggest pool for electrons. The SOM pool in soils is vulnerable and subject to aerobic respiration, which is the oxidation reaction in which the  carbon is oxidized to carbon dioxide (CO~2~). Thereby, energy ⚡  is released and since free electrons do not exist in chemical reactions, they need do be transferred to an electron acceptor. 
+Typically, O~2~ is the preferred acceptor because microorganisms are smart. They perform best when electrons are shuttled to O~2~ that is reduced to H~2~O (the oxidation state of oxygen in water is lower than it is in dimolecular oxygen because of the e^-^ uptake). 
+
+> An electron donor (e.g. SOM) donates electrons, an electron acceptor (e.g. O~2~) gains electrons
+
+Oxygen is not omnipresent in soils. Even though the pore space in soils makes up ~50% of the total volume (more or less), rainfall events and rise of groundwater increases the soil water content and this hampers the path for oxygen to diffuse from the atmosphere into the soil. Thereby, microorganisms do not die immediately when O~2~ dissapears (I imagine they hibernate like a 🐸 or a 🐻). Microbes in the soil are not reliant on O~2~ but can use other electron acceptors instead (see scheme below). They start working when the O~2~ content is low (facultative anaerobe living organisms) or strictly absent (obligate anaerobe living organisms) and reduce sequentially other electron acceptors, for instance nitrogen in nitrate, Mn^III,IV^ and so on.
+
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Animation of the idealized scheme when measureing redox potentials in soils."}
+knitr::include_graphics("animation.gif")
+```
+
+> The E~H~ is an expression and indicator, which electron acceptors are utilized by microbes
+
+What has this to do with E~H~? High values in soils are indicative that O~2~ is present (> 400 mV at pH 7). We label the soil milieu as aerobic or oxidizing. This happens when the electron acceptors in the soil occur in their oxidized species (O~2~, nitrate, Mn and Fe oxides, sulfate; see scheme above). If the E~H~ is low, e.g < -200 mV at pH 7, the soil is labeled anaerobic or reducing with the occurrence of reduced species (H~2~O, Mn^2+^, Fe^2+^, S^2-^). 
+
+> Species = Iron (Fe) has different redox states. The unsoluble stable form Fe(III) within minerals and the soluble Fe(II). These are the most important **species**
+
+The E~H~ in the soil can be measured by using an inert metal electrode, a reference electrode and a portable voltmeter to measure the voltage between both electrodes (for more details see the chapter **Equipment**). 
+
+![Nernst equation](02.jpg)
+
+The equation above is the [Nernst equation](https://en.wikipedia.org/wiki/Nernst_equation) and it is the theoretical framework for redox measurements in soils. Here it is idealized that a soil in an oxidized state (+800 mV)  features a low electron availability whereas a soil in a reduced state (-400 mV) features a high electron availability. 
+
+Under oxidizing conditions, e^-^ flow from the reference electrode towards the redox electrode and under reducing conditions in the opposite direction (see animation above). Closing the electrical circuit and by support of a voltmeter a voltage can be measured and this voltage is called E~H~. 
+
+Overall, the E~H~ is important to know to put geochemical processes that take place in soils into context. 
+
+I will talk more about redox measurements in the following and hope you enjoyed this read. 
+
+Yours, 
+
+Kristof
+
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>

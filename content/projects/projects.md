@@ -26,12 +26,12 @@ subtitle = ""
     tag = "*"
 
   [[content.filter_button]]
-    name = "Introduction"
-    tag = "Introduction"
-    
-  [[content.filter_button]]
     name = "Fundamentals"
     tag = "Fundamentals"
+    
+  [[content.filter_button]]
+    name = "Interpretation"
+    tag = "Interpretation"
     
   [[content.filter_button]]
     name = "Equipment"

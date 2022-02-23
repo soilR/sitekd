@@ -1,50 +1,48 @@
 ---
 title: "Dyes"
-author: "Kristof Dorau"
-date: '2021-02-09'
 slug: null
+author: "Kristof Dorau"
+date: '2022-02-17'
 draft: true
-categories: []
+lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-- Equipment
-- Dyes
+  - Equipment
+summary: 'Click to learn what **dyes** are'
 subtitle: ''
-summary: 'Click to learn what a **dyes** are'
-authors: []
+categories: []
 featured: no
 image:
-  caption: Photo by Shirish Suwal on Unsplash
-  focal_point: Smart
+  caption: ''
+  focal_point: ''
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
 
-```{r echo = FALSE, message = FALSE}
+```{r include=FALSE}
 
-knitr::opts_chunk$set(warning = F, echo = F, error = F, message = F)
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(rmarkdown)
-library(kableExtra)
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma")
+ 
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
 
-
 ```
-

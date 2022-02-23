@@ -7,7 +7,7 @@ draft: false
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Equipment
-summary: 'Click to learn what a salt bridge is'
+summary: 'Click to learn what a **salt bridge** is'
 subtitle: ''
 categories: []
 featured: no

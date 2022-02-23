@@ -1,49 +1,54 @@
 ---
 title: "Redox potential - Relevance of redox measurements"
 author: "Kristof Dorau"
-date: '2021-02-09'
+date: "2021-02-09"
 slug: null
 draft: false
 categories: []
 tags:
-- Customers
-- Introduction
+- Fundamentals
 subtitle: ''
-summary: 'Scientific fields with interest in measuring redox potentials.'
+summary: "Scientific fields with interest in measuring redox potentials."
 authors: []
-lastmod: ''
 featured: no
 image:
-  caption: "Photo by Kristof Dorau"
-  focal_point: ""
+  caption: 
+  focal_point: Smart
   preview_only: no
 projects: []
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<div style="text-align: justify">
 
-```{r echo = FALSE, message = FALSE}
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(patchwork)
-library(rmarkdown)
-library(kableExtra)
+```{r include=FALSE}
 
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
+knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FALSE, warning = FALSE)
+
+# With collapse = TRUE the Source and output lived together happily ever in knitr.
+# https://github.com/yihui/knitr-examples/blob/master/039-merge.md
+
+# loading multiple packages at once with `pacman`
+# create a vector name
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra")
+
+# Load the packages vector 
+pacman::p_load(packages, character.only = T)
+
 my_theme <- theme(
   panel.background = element_rect(fill = "white", color = "black"),
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
 
+```
+
+
+
+
+```{r echo = FALSE, message = FALSE}
 
 lit <- readr::read_delim("who.csv", delim = ";")
 

@@ -1,11 +1,10 @@
 ---
 title: "Interpretation of redox measurements"
-slug: intro-redox
+slug: null
 author: "Kristof Dorau"
 date: '2021-02-26'
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
-  - Introduction
   - Interpretation
 summary: 'Rules of thumb when evaluating and analyzing redox data'
 subtitle: ''

@@ -3,6 +3,7 @@ title: "Interpretation of redox measurements"
 slug: null
 author: "Kristof Dorau"
 date: '2021-02-26'
+draft: false
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Interpretation
@@ -20,7 +21,6 @@ projects: []
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
 
 <div style="text-align: justify">
-
 
 ```{r include=FALSE}
 

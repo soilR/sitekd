@@ -1,18 +1,19 @@
 ---
 title: "Factors with impact on the soil redox status."
-slug: null
 author: "Kristof Dorau"
-date: '2021-02-26'
-lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
-tags:
-  - Interpretation
-summary: 'An overview which factors have an impact on the soil redox status.'
-subtitle: ''
+date: "2021-02-09"
+slug: null
+draft: false
 categories: []
+tags:
+- Interpretation
+subtitle: ''
+summary: "An overview which factors have an impact on the soil redox status."
+authors: []
 featured: no
 image:
-  caption: ''
-  focal_point: ''
+  caption: 
+  focal_point: Smart
   preview_only: no
 projects: []
 ---

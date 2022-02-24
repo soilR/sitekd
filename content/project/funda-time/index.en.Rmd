@@ -16,6 +16,8 @@ image:
   focal_point: Smart
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 *The post was last updated on `r format(Sys.Date(), "%Y-%m-%d")`.*
@@ -32,7 +34,7 @@ knitr::opts_chunk$set(fig.align = "center", collapse = T, echo = F, message = FA
 
 # loading multiple packages at once with `pacman`
 # create a vector name
-packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra")
+packages <- c("tidyverse", "markdown", "knitr", "matrixStats", "patchwork", "lubridate", "plotly",  "naniar", "stlplus", "gt", "dygraphs", "htmltools", "zoo", "xts", "ggpmisc", "forcats", "RColorBrewer", "Kendall", "rstudioapi", "multcompView", "plyr", "bookdown", "janitor", "rstatix", "ggpubr", "moments", "tweetrmd", "ggthemes", "hexbin", "ggridges", "ggstream", "openair", "treemapify", "MBA", "akima", "sf", "rnaturalearth", "rnaturalearthdata", "rgeos", "ggspatial", "factoextra", "FactoMineR", "gapminder", "ggforce", "gh", "globals", "openintro", "profvis", "RSQLite", "shiny", "shinycssloaders", "shinyFeedback", "shinythemes", "testthat", "thematic", "tidyverse", "vroom", "waiter", "xml2", "zeallot", "shiny", "rsconnect", "Evapotranspiration", "ggtext", "scales", "ggcorrplot", "pracma", "kableExtra", "ggrepel")
 
 # Load the packages vector 
 pacman::p_load(packages, character.only = T)
@@ -45,8 +47,7 @@ my_theme <- theme(
 
 ```
 
-The following timeline was created with the R package **timevis** ⌚️ [Link](https://daattali.com/shiny/timevis-demo/). It offers a huge flexibility since it enables to pan along the timeline, zoom in and zoom out. This summary of the history of redox measurements in soils is based on my own findings and literature I had cited previously.  Please give me a note and I will edit the timeline with further findings.
-For a better overview, I built groups of the commonly employed methods to characterize the soil redox status:
+This summary of the history of redox measurements (predominantly in soils) is based on literature I had cited previously. Please give me a note and I will edit the timeline with further findings if you wish. This overview focused on redox electrode but their are other tools that can be used to qualitatively (or quantitatively) to characterize or even monitor reducing conditions. These are:
 
 * E~H~ measurements by redox electrodes  
 * Dyes that indicate the presence of, e.g., Fe^2+^  
@@ -57,85 +58,64 @@ For a better overview, I built groups of the commonly employed methods to charac
     + Oxidative capacity (OXC) approach
     + ...
 
+📚 More information with emphasis on technical advancements can be found in the PhD thesis from Sabine Fiedler:
+Fiedler, S., 1997. In-situ-Langzeitmessungen des Redoxpotentials in hydromorphen Böden einer Endmoränenlandschaft im württembergischen Alpenvorland, Universität Hohenheim, Stuttgart.
 
-```{r echo = FALSE, message = FALSE, eval = FALSE}
+The following static timeline (💯 % **ggplot**) is more general of the most important findings with major breakthroughs related to the platinum redox electrode:
 
-library(tidyverse)
-library(widgetframe)
-library(timevis)
-library(rmarkdown)
-library(kableExtra)
-
-## The theme must be in FRONT (!) of all ggplot or it will be overwritten
-my_theme <- theme(
-  panel.background = element_rect(fill = "white", color = "black"),
-  panel.grid.major = element_blank(), 
-  panel.grid.minor = element_blank(), 
-  panel.border = element_blank())
-
-# the package timeline NEEDS a data frame and NOT a tibble...
-timeline <- read.csv("timeline.csv", sep = ";")
-timeline <- timeline[,1:5]
-timeline_groups <- read.csv("timeline_groups.csv", sep = ";")
-
-# All columns need to be in factor format
-timeline$content <- as.factor(timeline$content)
-# Change the date format
-timeline$start <- as.Date(timeline$start, format="%d.%m.%Y")
-timeline$start <- as.factor(timeline$start)
-timeline$end <- as.factor(timeline$end)
-timeline$group <- as.factor(timeline$group)
-# And for the seperate data table for the grouping
-timeline_groups$id <- as.factor(timeline_groups$id)
-timeline_groups$content <- as.factor(timeline_groups$content)
-
-# Plot the time line
-timevis(timeline, groups = timeline_groups)
-
-```
-
-The following static timeline (💯 % **ggplot**) is more general of the most important findings with major breakthroughs:
-
-```{r  echo = FALSE, message = FALSE}
-
-library(tidyverse)
-library(ggplot2)
-library(scales)
-library(lubridate)
-library(dplyr)
-library(ggalt)
-library(ggrepel)
-
+```{r  echo = FALSE, message = FALSE, eval = F}
 # Create data to plot
 data <- tribble( ~year, ~event, ~displ,
-                as.Date("1920-02-17"), "Gillespie \nFirst application of Pt electrodes in soil slurries", 1,
-                as.Date("2002-12-01"), "Jenkinson\nIntroduction of IRIS devices", 0.5,
-                as.Date("1981-01-01"), "Childs\nUse of dyes to test for ferrous Fe", 0.3,
-                as.Date("1995-02-01"), "Chapelle et al.\nHierarchical scheme for diagnosis of terminal\n electron-accepting processes (TEAPs)", 0.8 
+                as.Date("1920-02-17"), "Gillespie, First application of Pt electrodes in soil slurries", 0.1,
+                as.Date("1993-03-29"), "Mansfeldt, Proof that EH can be measured up to 20 months in situ", 0.1,
+                as.Date("2004-02-01"), "Vorenhout et al., HYPNOS, first commercial available redox logger", 0.1,
+                as.Date("1994-02-17"), "Fiedler und Fischer, First automatic device for longtime recording of EH", 0.1, 
+                as.Date("1981-01-01"), "Rovell, Initial measurement in soil suspension", 0.1, # Summarized by Fiedler and Fischer 1994
+                as.Date("1986-02-17"), "Ransom and Smeck, Initial measurement in soil solution", 0.1,
+                as.Date("1947-02-17"), "Quispel, Laboratory based in situ measurement", 0.1,
+                as.Date("1972-02-17"), "Gotoh and Patrick, Lab measurements to explore Mn and Fe solubility", 0.1,
+                as.Date("1971-03-19"), "Bailey and Beauchamp, Permanently installed electrodes for 20 days", 0.1,
+                as.Date("1989-02-17"), "Olness et al, Permanently installed electrodes for two growing seasons", 0.1,
+                as.Date("1978-02-17"), "Loyer and Susini, First automation of data loging", 0.1,
+                as.Date("1968-02-17"), "Meek et al, Daily EH measurement with multiple replicates for 7 days", 0.1,
+                as.Date("1976-02-17"), "Flühler et al, Daily EH measurement with multiple replicates for 22 days", 0.1,
+                as.Date("1983-02-17"), "Venemann and Pickering, Recommendation to use a salt bridge", 0.1,
+                as.Date("1972-02-17"), "Mann and Stolzy, Construction of waterproof Pt electrodes", 0.1,
+                as.Date("1946-01-01"), "ZoBell, Initial paper on redox measurements in marine sediments", 0.1,
+                as.Date("1934-01-01"), "Brown, EH is an intensity parameter and introduction of poise as measure of redox capacity", 0.1,
+                as.Date("1934-01-01"), "Bradfield et al., Delineate suitable orchyard plantings spots by in situ EH data", 0.1,
+                as.Date("1938-01-01"), "Pearsall, Linkage between marsh vegetation and redox zonation", 0.1,
+                as.Date("1960-01-01"), "McKenzie et al., Linkage between redox conditions and pedogenesis", 0.1
 )
 
 
 # Plot the data
-p1 <- data %>%
-  ggplot(aes(x = year, y = displ, label = event)) +
-  geom_segment(aes(x = year, xend = year, y = 0, yend = displ)) +
+p <- data %>%
+  ggplot(aes(x = displ, y = year, label = event)) +
+  geom_segment(aes(y = year, yend = year, x = 0, xend = displ)) +
   geom_point(shape = 21, fill = "red", size = 3) +
-  geom_text_repel() +
-  geom_hline(yintercept=0, color = "black", size=0.3) +
+  geom_text_repel(direction = "y", nudge_x = 0.5, stat = "identity") +
+  geom_vline(xintercept=0, color = "black", size=0.3) +
+  scale_y_date(date_labels = "%Y", date_breaks = "10 years") +
+  coord_cartesian(xlim = c(0,1)) +
   labs(
     title = "A history of redox measurements in soils/sediments/aquifers",
     subtitle = "Author and achievement below",
-    caption = "Summarized by Kristof Dorau, 2021", 
-    x = "Year"
+    caption = "Summarized by Kristof Dorau", 
+    y = "Year"
   ) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.line = element_blank(),
-        axis.text.x = element_text(size = 8),
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank(),
+        axis.text.x = element_blank(),
         panel.background = element_rect("white")
         )
 
-p1
+ggsave(plot = p, filename = "content/project/funda-time/time.png", width = 7, height = 11)
 
 ```
+
+```{r echo = F, fig.cap="Timeline of important findings related to the measuring of redox potentials in soils"}
+knitr::include_graphics("time.png")
+```
+

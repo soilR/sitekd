@@ -1,7 +1,7 @@
 ---
 title: "Factors with impact on the soil redox status."
 author: "Kristof Dorau"
-date: "2021-02-09"
+date: "2022-02-25"
 slug: null
 draft: false
 categories: []
@@ -45,3 +45,61 @@ my_theme <- theme(
 
 ```
 
+Multiple factors contribute to the development of the E~H~ under in situ conditions and make an interpretation particularly challenging, since most (or all) factors are very dynamic in time but also in space. I categorized the driving forces into:
+
+- **intrinsic** (what the soil is composed of; all biogeochemical aspects of soil architecture from the arrangement of soil particles/aggregates towards the composition of the pore network and what these domains are made of, e.g., mineral type, pH, ...)
+- **external** (factors that contribute from "the outside"; meteorological and hydrological boundary conditions that primarily change the soil water content and thereupon trigger the onset of reducing conditions; soil temperature as a result of changes in air temperature, ...) 
+- **technical** (relates to factors which influence the measurement in a technical way (noise) and are not driven by microbial processes in the soil)
+
+
+```{r echo = F, fig.cap="Factors that contribute to redox development and spatiotemporal E~H~ variability in soils."}
+knitr::include_graphics("featured.jpg")
+```
+
+**Intrinsic**:
+
+- **SOM**: During soil respiration microbes utilize organic substances as electron donor and oxidize these compounds - at best - towards H~2~O and CO~2~. By transferring the released electrons towards electron acceptors, e.g. O~2~, microbes gain energy. The quality and quantity of SOM (its redox capacity defined as the ability to participate in redox reactions) is therefore very critical for a variety of biogeochemical processes such as Fe(III) reduction, nutrient and pollutant fate. There are many characteristics of SOM quality but lignin and nitrogen content are estimated to be the best indicators for biodegradability (Reddy and DeLaune, 2008). 
+
+```{r echo = F, fig.cap="Impact of substrate type on decomposition rates. (adapted from Reddy and DeLaune, 2008; Moran et al., 1989)"}
+knitr::include_graphics("SOM.jpg")
+```
+
+- **Aggregation**: The Pt wire of the redox electrode has a small surface (typically 1 mm in diameter and 5 mm length but this can be very different) and, thus, is prone to the arrangement of pores and the solid network. If a soil is very well aggregated (rich in clay) and features a macroporous domain it is close to gambling wether the Pt wire dips inside an aggregate (likely to measure a low E~H~) or outside an aggregate (O2 can quickly enter this domain and aerates the soil volume with high E~H~). Larger aggregates feature measurable larger anaerobic centers than smaller aggregates (Sexstone et al., 1985). 
+
+- **Texture**: Coarse-textured soils are better drained than fine-textured soils and are therefore better aerated with impact on the E~H~. As larger the pore space filled with air, as larger is the volume of soil that is presumably oxidized with E~H~ at pH 7 > 300 mV. Overall, texture is a fundamental property for gas exchange and this affects the soil redox status. 
+
+- **pH**: "In nature, nearly all redox reactions include transfer of protons and thus redox reactions typically cause changes in soil pH." (Strawn et al., 2015). For instance, the half reaction for the reduction of Fe(III) in the iron oxide goethite indicates that for every mole of goethite being reduced, three moles of protons are consumed. Thus, reducing conditions and a reduction of various electron acceptors (as it is the case for goethite) trigger an increase in soil pH as shown below over time. The opposite process, i.e. aeration of the soil with oxidizing conditions, will result in a production of protons and thereupon a decrease in soil pH. Redox reactions are therefore pH dependent and for predicting a species 
+
+> FeOOH~(s)~ + **3H^+^~(aq)~** + e^−^ = Fe^2+^~(aq)~ + 2H~2~O (half-reaction for Fe(III) reduction)
+
+```{r echo = F, fig.cap="Idealized E~H~ and pH development after water saturation of a soil."}
+knitr::include_graphics("pH.jpg")
+```
+
+- **Poise**: Poise is the resistance for changes in E~H~ and the relation with E~H~ and poise is similar to buffer capacity and pH. As long as a distinct oxidant is present in the soil or the soil solution, the systems E~H~ maintains poised at the E~H~ of the particular redox couple. The E~H~ only decreases further if the oxidant is diminished and proceeds to the next redox pair on the redox latter. This is exemplified below for the presence of nitrate in soil solution: 
+
+```{r echo = F, fig.cap="Idealized E~H~ development after nitrate addition subsequent to flooding of a soil. Redrawn from Reddy and DeLaune, 2008."}
+knitr::include_graphics("nitrate.jpg")
+```
+
+- **Microbial activity**: Redox reactions would not take place without the support by microorganisms that lower the activation energy of the reaction by enzymatic catalysis. However, it was believed that Fe(III) and Mn(IV) reduction is a pure chemical driven process until the 1960-70s, which could be rejected by simple experiments: sterilization of a microbial free soil and injection of H~2~ along with spiked hematite resulted in a E~H~ drop from +350 to -350 mV, conditions where Fe(III) reduction would have been expected. Only the presence by *Bacillus-*, *Pseudomonas-* or *Enterobacter-* species resulted in appropriate Fe(III) reduction. Iron reducing microorganisms are manifold in soils but the interplay of ecological boundary conditions (water saturation, easy degradable SOM, absence of O~2~, soil temperature) facilitates Fe(III) reduction, which is an enzymatic process and not chemical (Ottow, 2011).
+
+- **Impermeable horizon**: Texture is an important property but even a topsoil with a high hydraulic conductivity and high air-filled porosity might periodically feature the onset of reducing conditions and thus a drop in E~H~. This is especially true if the underlying subsoil has very low hydraulic conductivity (a few mm d^-1^). Subsequent after intense rainfall events the soil water is perched above the impermeable horizon. A common soil type featuring perched water (or stagnant water) is the Stagnosol with periodically reducing conditions. These dense horizon can typically found on glacial till, loamy aeolian, alluvial or colluvial deposits. 
+
+**External**
+
+- **Soil temperature**: Like any (or all) biological reactions are driven by temperature, for instance, catabolic nitrate reduction increased 1.5-2 fold with 10 °C rise in temperature (Reddy and DeLaune, 2008). A warming soil under climate change, even if the change comprises only a few °C, has an intense impact on biogeochemical processes. In a recent study, we found that soil temperatures in 100 cm depth increased up to 2.3 °C derived from long-term trends in North-Rhine Westphalia. This "is an important observation and needs to be included with emphasis on biogeochemical processes that cover soil organic carbon dynamics and mineral weathering rates modifying the nutrition supply for plants. ![(Dorau et al., 2022)](https://link.springer.com/article/10.1007/s10584-021-03293-9)" Soil temperature can (and is) also an intrinsic property but since this is driven by meteorological boundary conditions, it is related to external forces. 
+
+- **Soil water content**: The O~2~ pool of soils is continuously replenished by O2 diffusion through soil pores as long as they are filled with air. When filled with water, the O2 diffusion is extremely slow, and, depending on metabolic activity,  the  soil  O2   pool  is  more  or  less  rapidly  exhausted. Thus, the degree of water saturation has a strong impact on the E~H~ development.
+
+- **Water table**: The water table is a master variable explaining temporal and spatial pattern of E~H~ within groundwater influenced environments. The groundwater surface can be seen as an interface between aerobic (oxidizing) and anaerobic (reducing) conditions. The longer the soil is saturated in a particular depth, the lower was the E~H~ (Mansfeldt, 2003). 
+
+- **Electrical fields**: E~H~ measurements feature marginal electrical currents in the nano- to micro Ampere range. These small currents are particularly sensitive towards electro-magnetic fields (Fiedler 1997), e.g., close to high-voltage transmission lines.
+
+- **Thermal regime**: We could recently demonstrated that "The temperature of the soil itself changes its thermochemical bE~H~avior analog to ZoBell's solution *(a solution to check for proper functioning of redox electrodes)* and this should be carefully considered to partition and discriminate between physical and biological infuences on the E~H~ measurement. Therefore, physical sound corrections should be further pursued in the future to differentiate between technical related noise and microbial-driven signals on redox measurements." ![Dorau et al, 2021 Temperature-induced diurnal redox potential in soil](https://pubs.rsc.org/en/Content/ArticleLanding/2021/EM/D1EM00254F)
+
+- **Pt surface**: The soil E~H~ is charaterisitic for the soil volume that is in contant with the surface of the Pt wire. A long wire of 30 cm length would thereby integrate oxidizing and strongly reducing areas being in contact with the wire. Would one certainly argue what the benefit of these E~H~ average is. Therefore, miniaturized redox electrodes of only 200 nm^2^ have been designed (Jang et al, 2005) to account for small soil structural properties and differentiate between inter- and intraaggregate domains.  
+
+- **Reference electrode**: The reference electrode is prone to alterations and leaching of the internal electrolyte into the soil has an impact on the measured potential. There is no clear recommendation when to change the electrode during continous soil monitoring but we did this in intervals between 2 to 4 years if permanently in situ monitoring is conducted. However, in the laboratory the proper functioning of the reference and the redox electrode should be regularly checked before an experiment is conducted. 
+
+- **Salt bridge**: The agar gel within the salt bridge is prone to shrinakge over time and this would hamper to close the galvanic contact between the reference electrode - agar gel - soil matrix. The result would be erratic readings and therefore, renewal of the agar gel should be complemented on a regular basis (annual or biannual). 

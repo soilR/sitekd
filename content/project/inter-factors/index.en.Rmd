@@ -1,7 +1,7 @@
 ---
 title: "Factors with impact on the soil redox status."
 author: "Kristof Dorau"
-date: "2022-02-25"
+date: "2022-02-23"
 slug: null
 draft: false
 categories: []

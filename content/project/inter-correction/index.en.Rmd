@@ -2,8 +2,8 @@
 title: "Correction of redox measurements."
 slug: null
 author: "Kristof Dorau"
-date: '2021-02-26'
-draft: false
+date: '2022-02-24'
+draft: true
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Interpretation

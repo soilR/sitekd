@@ -2,9 +2,8 @@
 title: "Redox electrode"
 slug: null
 author: "Kristof Dorau"
-date: '2022-02-18'
-draft: true
-lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
+date: '2022-02-25'
+draft: false
 tags:
   - Equipment
 summary: 'Click to learn what a **redox electrode** (e.g. platinum) is'
@@ -47,20 +46,15 @@ my_theme <- theme(
 
 ```
 
-One important characteristic of redox electrodes is, the material used to measure the EH must be non-selective. This means, it is able to accept or release electrons depending on the conditions of the soil without participating itself in electron transfer reactions. Platinum (Pt) is commonly used with a standard electrode potential of 1,118 mV 
+One important characteristic of redox electrodes is, the material used to measure the E~H~ must be non-selective. This means, it is able to accept or release electrons depending on the conditions of the soil without participating itself in electron transfer reactions. In soils, the theoretical range of E~H~-pH conditions is limited by the stability of water. High E~H~ values would oxidize water to O~2~ and low E~H~ would reduce H^+^ to H~2~. Thus, the upper and the lower end are always buffered since water molecules are always present in natural systems and H^+^ are always present in water (even at high pH). This determines the E~H~ range found in soils (Strawn et al. 2015). 
 
-Pt 	Pt^2+^ + 2^e−^ 	⇌ 	Pt(s) 	1,188
+A redox electrode with the tip made of iron would be a bad choice because in the electropotential series that lists standard electrode potentials (*E^0^*) elemental Fe (**-0.44 V**; Fe^2+^ + 2^e−^ ⇌ Fe) is way below H~2~ (**0 V**; 2H^+^ + 2^e−^ ⇌ H~2~). Since the *E^0^* of the redox couple Fe-Fe^2+^ is lower than the H~2~-H^+^ couple, elemental Fe would be oxidized to Fe^2+^ and further hydrolyse and oxidize to form Fe(III) oxides and H^+^ would be reduced to H~2~. 
 
-Zinc, for instance, would be a bad choice for the soil environment with EH range between -300 and + 800 mV, whereby Zn would be 
+This is the main reason platinum is used with a *E^0^* of **+1.20 V** (Pt^2+^ + 2^e−^ ⇌ Pt), since under E~H~ conditions found in soils it will always be on the right hand side of the equation as elemental Pt and not participate itself in electron transfer reactions (it will not oxidize). Other noble elements could also be employed but this is typically not done (e.g., gold, wax impregnated graphite, glassy carbon) (Mansfeldt 2019). 
 
-Zn 	Zn^2+^ + 2^e−^ 	⇌ 	Zn(s) 	-7618
+Redox electrodes with an active Pt surface area are different in construction and incorporated in electrode housings (PVC or fiberglass). However, the bottleneck which determines the durability of redox electrodes is the junction between the Pt wire solded onto a Cu wire. If water gets in contact with the Cu an electrical shortcut occurs with erratic readings being the result. The best way recommended by Pfisterer and Gribbohm (1989) is to use a ceramic jacket to make the housing water-proof. At [Polder Speicherkoog](https://www.kristofdorau.de/post/polder-speicherkoog/) we continuously measure E~H~ in situ since April 2010 on hourly basis and since then, no electrode showed a faulty reading that could be related to a short circuit. Obviously, with ~2 million readings the way of constructing electrodes is recommended. 
 
-```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap = "Scheme for measuring redox potentials. Source: [Dorau, 2016](https://kups.ub.uni-koeln.de/7439/1/Dissertation_Dorau.pdf), adapted from Fiedler et al. 2007; Reddy and DeLaune 2008; Strawn et al. 2015"}
-knitr::include_graphics("featured.jpg")
+```{r fig.cap="Scheme of the platinum surface in contact with the soil matrix and one continous pore filled with air. Presumably, the tourtous path enable O~2~ to diffuse towards the Pt surface. The electrodes are scaled for comparison with a sand grain with the reactive surface area from three studies. Source: The scheme on the left is adapted from Reddy and DeLaune (2008) and on the right my own illustration."}
+knitr::include_graphics("electrode.jpg")
 ```
 
-# Example....Pt electrode with electron flow from left to right
-
-```{r chunk-label, fig.show='animate', ffmpeg.format='gif', dev='jpeg'}
-for (i in 1:10) plot(runif(100), ylim = c(0, 1)) # for example
-```

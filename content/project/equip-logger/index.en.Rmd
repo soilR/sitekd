@@ -3,7 +3,7 @@ title: "Data logger"
 slug: null
 author: "Kristof Dorau"
 date: '2022-02-17'
-draft: true
+draft: false
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Equipment
@@ -12,7 +12,7 @@ subtitle: ''
 categories: []
 featured: no
 image:
-  caption: ''
+  caption: 'Photo by Lars Kienle on Unsplash'
   focal_point: ''
   preview_only: no
 projects: []
@@ -46,3 +46,12 @@ my_theme <- theme(
   panel.border = element_blank())
 
 ```
+
+Besides a reference and a redox electrode, a device to store the data including a voltmeter and a multiplexer (for multiple readings with multiple redox electrodes) are needed. I consider the data logger therefore as a single unit in the measurement routine. The multiplexer should be equipped with a very high impedance for all individual redox channels > 10^13^ Ω (= 10 Teraohm; TΩ). This is mandatory in order to obtain a stable reading. Data logger can sometimes be equipped with a modem and the data can be transferred to a webserver via General Packet Radio Service (GPRS), as shown in the example below: 
+
+```{r fig.cap="Image of a data logger employed at Polder Speicherkoog."}
+knitr::include_graphics("logger.jpg")
+```
+
+For most applications, a measuring interval every hour is recommended to relate the E~H~ to environmental boundary conditions (which can fluctuate significantly on a short temporal scale) and collect data over years to centuries to derive long term trends. Thereby, even though a lot of data is gathered, you do not get lost within your data, e.g., collected on a minute interval.
+

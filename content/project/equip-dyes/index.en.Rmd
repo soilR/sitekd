@@ -3,7 +3,7 @@ title: "Dyes"
 slug: null
 author: "Kristof Dorau"
 date: '2022-02-17'
-draft: true
+draft: false
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Equipment
@@ -46,3 +46,8 @@ my_theme <- theme(
   panel.border = element_blank())
 
 ```
+
+Redox measurements are valuable to predict the occurrence/likelihood of a reduced species in soil solution, e.g., the presence of ferrous Fe (Fe^2+^). One simple method to infer reducing conditions is the use of dyes, which react with Fe^2+^ to colored compounds. Commonly, 2,2’-dipyridyl [Childs 1981](https://www.publish.csiro.au/SR/SR9810175) is taken but potassium ferrocyanide [Ringrose_voase and Humphreys 1993](https://www.sciencedirect.com/bookseries/developments-in-soil-science/vol/22/suppl/C) can also be used. Although simple to use, this method provides only a snapshot, and it also uses harmful chemicals. 
+Childs (1981) proposed using a 0.1% solution of α,α-dipyridyl and the NTCHS a 0.2% solution within 1 M ammonium acetate (Fiedler et al. 2007). The solution can be sprayed or dripped onto the soil of a soil auger or towards the front of a soil profile. Typically, the reaction occurs very fast within seconds. 
+
+> When using the dye you should hurry up and do it on a fresh sample since Fe^2+^ will auto-oxidize and metal containing auger or steel cylinder might deliver a false positive reaction. 

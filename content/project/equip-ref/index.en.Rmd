@@ -2,8 +2,8 @@
 title: "Reference electrode"
 slug: null
 author: "Kristof Dorau"
-date: '2022-02-17'
-draft: true
+date: '2022-03-01'
+draft: false
 lastmod: "`r format(Sys.time(), '%d %B, %Y')`"
 tags:
   - Equipment
@@ -12,7 +12,7 @@ subtitle: ''
 categories: []
 featured: no
 image:
-  caption: ''
+  caption: 'Scheme is by Kristof Dorau'
   focal_point: ''
   preview_only: no
 projects: []
@@ -45,5 +45,28 @@ my_theme <- theme(
   panel.grid.minor = element_blank(), 
   panel.border = element_blank())
 
+```
+
+The reference electrode for measuring E~H~ is the standard hydrogen electrode (SHE) but this particular electrode is difficult to handle during field operations. As an alternative the silver-silver chloride electrode (Ag-AgCl) and sometimes a calomel electrode (Hg-Hg~2~Cl~2~) is used. Since Hg is an element associated with a lot of shortcomings - especially in the environment - the use of Ag-AgCl is recommended (Mansfeldt 2020). This system is by far most employed because it is simple to prepare and reproducible (Galster 1991). 
+The electrode consists of an Ag wire coated by solid AgCl and immersed into a solution of KCl with varying concentration. The standard potentials depend on the concentration of the internal KCl solution and therefore the reference potential needs to be adjusted depending on the KCl concentration and based upon the temperature. 
+
+```{r}
+# Construct table 
+tab_ref <- tribble(
+  ~Temperature, ~AgAgCl_1M, ~AgAgCl_3M, ~AgAgCl_saturated,
+  5, 247,221,216,
+  15, 242,214,207,
+  25, 236,207,197
+)
+
+kable(tab_ref, format = "html", caption = "Reference potentials (in mV) at different temperatures and KCl concentrations versus the standard hydrogen electrode") %>%
+  kableExtra::kable_styling(full_width = T)
+
+```
+
+When the redox electrode and the reference electrode are connected the electrical circuit is closed and electrons start to flow depending on the EH measured in close vicinity of the redox electrode. Under oxidizing soil conditions the reaction goes to the right hand side and Ag is oxidized (see scheme above and the animation [here](https://www.kristofdorau.de/project/funda-definition/)) and if the soil is reducing the reaction goes to the left hand side and Ag is reduced. For maintaining charge balance inside the reference electrode a ceramic frit/porous channel is molten inside the glass electrode capable that ions can migrate outside the electrode into the soil, either K^+^ (E~AgAgCl~ > 0 mV) or Cl^-^ (E~AgAgCl~ < 0 mV).  
+
+```{r fig.cap="Image of a reference electrode, a salt bridge and multiple redox electrodes."}
+knitr::include_graphics("ref.jpg")
 ```
 

@@ -1,30 +1,107 @@
 ---
-title: "Reference electrodes"
-author: "Kristof Dorau"
-date: '2021-02-09'
+title: "Reference electrode"
 slug: null
-draft: true
-categories: []
+author: "Kristof Dorau"
+date: '2022-03-01'
+draft: false
+lastmod: "01 März, 2022"
 tags:
-- Equipment
-- Reference electrode
-subtitle: ''
+  - Equipment
 summary: 'Click to learn what a **reference electrode** is'
-authors: []
+subtitle: ''
+categories: []
 featured: no
 image:
-  caption: Photo by Shirish Suwal on Unsplash
-  focal_point: Smart
+  caption: 'Scheme is by Kristof Dorau'
+  focal_point: ''
   preview_only: no
 projects: []
+editor_options: 
+  chunk_output_type: console
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 
 
-<p><em>The post was last updated on 2021-03-03.</em></p>
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
+<p><em>The post was last updated on 2022-03-01.</em></p>
+<div style="text-align: justify">
+
+
+
+
+<p>The reference electrode for measuring E<sub>H</sub> is the standard hydrogen electrode (SHE) but this particular electrode is difficult to handle during field operations. As an alternative the silver-silver chloride electrode (Ag-AgCl) and sometimes a calomel electrode (Hg-Hg<sub>2</sub>Cl<sub>2</sub>) is used. Since Hg is an element associated with a lot of shortcomings - especially in the environment - the use of Ag-AgCl is recommended (Mansfeldt 2020). This system is by far most employed because it is simple to prepare and reproducible (Galster 1991).
+The electrode consists of an Ag wire coated by solid AgCl and immersed into a solution of KCl with varying concentration. The standard potentials depend on the concentration of the internal KCl solution and therefore the reference potential needs to be adjusted depending on the KCl concentration and based upon the temperature.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>Reference potentials (in mV) at different temperatures and KCl concentrations versus the standard hydrogen electrode
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Temperature
+</th>
+<th style="text-align:right;">
+AgAgCl_1M
+</th>
+<th style="text-align:right;">
+AgAgCl_3M
+</th>
+<th style="text-align:right;">
+AgAgCl_saturated
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+247
+</td>
+<td style="text-align:right;">
+221
+</td>
+<td style="text-align:right;">
+216
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+242
+</td>
+<td style="text-align:right;">
+214
+</td>
+<td style="text-align:right;">
+207
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+236
+</td>
+<td style="text-align:right;">
+207
+</td>
+<td style="text-align:right;">
+197
+</td>
+</tr>
+</tbody>
+</table>
+<p>When the redox electrode and the reference electrode are connected the electrical circuit is closed and electrons start to flow depending on the EH measured in close vicinity of the redox electrode. Under oxidizing soil conditions the reaction goes to the right hand side and Ag is oxidized (see scheme above and the animation <a href="https://www.kristofdorau.de/project/funda-definition/">here</a>) and if the soil is reducing the reaction goes to the left hand side and Ag is reduced. For maintaining charge balance inside the reference electrode a ceramic frit/porous channel is molten inside the glass electrode capable that ions can migrate outside the electrode into the soil, either K<sup>+</sup> (E<sub>AgAgCl</sub> &gt; 0 mV) or Cl<sup>-</sup> (E<sub>AgAgCl</sub> &lt; 0 mV).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="ref.JPG" alt="Image of a reference electrode, a salt bridge and multiple redox electrodes." width="526" />
+<p class="caption">
+Figure 1: Image of a reference electrode, a salt bridge and multiple redox electrodes.
+</p>
+</div>

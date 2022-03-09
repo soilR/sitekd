@@ -1,0 +1,141 @@
+---
+title: "Field tools to assess the soil carbon content"
+slug: null
+author: "Kristof Dorau"
+date: '2022-03-01'
+draft: false
+lastmod: "09 März, 2022"
+tags:
+  - Monitoring
+  - Field tools
+summary: 'One of my favorite courses has been a pratical field guide for students to assess the soil organic matter storage in soil in and around a fen in Northern Germany called "Bastauwiesen". This post is about the study area and what makes it so special and relevant for teaching.'
+subtitle: ''
+categories: []
+featured: no
+image:
+  caption: 'Image from Kristof Dorau'
+  focal_point: ''
+  preview_only: no
+projects: []
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p><em>The post was last updated on 2022-03-09.</em></p>
+<div style="text-align: justify">
+
+
+
+
+<p>The conservation area Bastauwiesen is a mesotrophic meadow fen and extends 11 km eastwards and 2 km soutwards in the district of Minden-Lübbecke, North-Rhine Westphalia. My first article was about wetland restoration measures from the fen “Bastauwiesen” (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0925857415301233">Dorau et al. 2015</a>). We investigated long term trends in water table depth development over 25 years at multiple wells within the study site. The organic rich soils of the fen are within the glacial valley of the River Weser with the basement composed of sandy to gravel Holocene deposits. South of the conservation area is the Wiehengebirge, which is the most northern summits of the Mittelgebirge. The soils at the ridge and along the slopes are mineral soils and the soil organic matter content (SOM) and the SOM stocks increase tremendously as closer you get to the wet but channelized Bastauwiesen fen. The soil properties vary a lot along a 3 km transect, which makes it a perfect location for training purposes to quantify SOM stocks in soils, discuss which processes ultimately results in SOM accrual in wetland soils, and, finally, visualize the data by maps.</p>
+<div id="soil-color" class="section level1">
+<h1>Soil color</h1>
+<p>One of the most important properties to describe soils is soil color. We use the Munsell soil color chart to describe the color in a technical and at best reproducible way but without doubt, it needs some training to find the correct color. The color will change from a dry towards a wet soil and it should be mentioned on which sample the assessment was done. Three factors are important:</p>
+<ul>
+<li>Hue (specific color)</li>
+<li>Value (light vs dark)</li>
+<li>Chroma (color intensity)</li>
+</ul>
+<p>For instance, the colors below denote three common Fe(III) oxides, humus and quartz, which are</p>
+<ul>
+<li>goethite, coarse (10YR 8/6)</li>
+<li>quartz (10YR 6/1)</li>
+<li>soil organic matter (10YR 2/1)</li>
+<li>ferrihydrite (2.5YR 3/6)</li>
+<li>hematite, fine (10R 4/8)</li>
+</ul>
+<p>We need these information to quantify the soil organic carbon content of the soil.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" alt="Examples of soil color from different minerals and humus in soils. Source: aqp Package and nrcs.usda.gov" width="672" />
+<p class="caption">
+Figure 1: Examples of soil color from different minerals and humus in soils. Source: aqp Package and nrcs.usda.gov
+</p>
+</div>
+</div>
+<div id="texture" class="section level1">
+<h1>Texture</h1>
+<p>Soil texture is a mixture of the main group of particle sizes present in the soil: sand, silt and clay. It is one of the most important physical properties and determines the amount of water a soil can hold, its available plant water and many other related processes, such as nutrient storage. It can be estimated by hand or more precisely in the laboratory. Some behavior of the soil particles are the following (according to the german classification KA5):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Texture</th>
+<th align="left">Soil code</th>
+<th align="left">Behavior</th>
+<th align="left">Clay content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pure sand</td>
+<td align="left">Ss</td>
+<td align="left">Coherence is nil, single grains visible</td>
+<td align="left">&lt; 5%</td>
+</tr>
+<tr class="even">
+<td align="left">Slightly clayey silt</td>
+<td align="left">Ut2</td>
+<td align="left">Barely visible grains, floury consitency</td>
+<td align="left">8-12%</td>
+</tr>
+<tr class="odd">
+<td align="left">Pure clay</td>
+<td align="left">Tt</td>
+<td align="left">Plastic/sticky consistency, ribbon of 75 mm or more</td>
+<td align="left">65-100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="profile-description" class="section level1">
+<h1>Profile description</h1>
+<p>The Pürckhauer is a soil auger with a diameter of ~2 cm and typically a length of 1 m. The determination of soil color and texture according to different soil horizons can be done on soil taken from the auger. However, to separate the horizons and describe them is difficult in the field because in most cases a clear and distinct “boundary” is missing between individual soil horizons.</p>
+<blockquote>
+<p>A soil horizon has physical, chemical and biological properties that differ from the horizon above or below.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="auger.jpg" alt="Profile description with a Pürckhauer auger." width="499" />
+<p class="caption">
+Figure 2: Profile description with a Pürckhauer auger.
+</p>
+</div>
+</div>
+<div id="calculation" class="section level1">
+<h1>Calculation</h1>
+<p>First of all, you need to derive the humus content based on the soil color and the texture. You can have a look at the description and look-up tables within the book KA5, which is the guide to german soil classification. If you want to get the soil organic carbon content (C<sub>org</sub>) instead of the humus content, you have to divide your values by the factor 1.72 (humus is composed by 58% on average by carbon following other elements, such as H, O, N, P, S, …).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="table.JPG" alt="Estimation of humus content in soils. Source: KA5, S. 111, Tab. 14" width="628" />
+<p class="caption">
+Figure 3: Estimation of humus content in soils. Source: KA5, S. 111, Tab. 14
+</p>
+</div>
+<p>Finally, you need to sum up all the individual humus (or C<sub>org</sub>) contents and account for the bulk density. In most cases mineral soils have a lower bulk density with 1.2 g kg<sup>-1</sup> compared with organic soils. If you have the individual density for each horizon this would be the best, otherwise you can estimate the density or assume an equal density throughout the soil profile.</p>
+<p><img src="calc.JPG" width="454" style="display: block; margin: auto;" /></p>
+<p>Et voila, the hypothetical soil from the example would yield a SOM stock of ~7 kg C<sub>org</sub> m<sup>-²</sup> (up to 100 cm depth).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7-1"></span>
+<img src="IMG_20220308_091617_1.jpg" alt="Some impressions" width="2000" />
+<p class="caption">
+Figure 4: Some impressions
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7-2"></span>
+<img src="IMG_20220307_171946.jpg" alt="Some impressions" width="2592" />
+<p class="caption">
+Figure 5: Some impressions
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7-3"></span>
+<img src="IMG_20220307_172013.jpg" alt="Some impressions" width="2000" />
+<p class="caption">
+Figure 6: Some impressions
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7-4"></span>
+<img src="IMG_20220308_170634_13.jpg" alt="Some impressions" width="2000" />
+<p class="caption">
+Figure 7: Some impressions
+</p>
+</div>
+</div>

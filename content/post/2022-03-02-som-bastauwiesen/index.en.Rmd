@@ -50,11 +50,11 @@ my_theme <- theme(
 
 ```
 
-The conservation area Bastauwiesen is a mesotrophic meadow fen and extends 11 km eastwards and 2 km soutwards in the district of Minden-Lübbecke, North-Rhine Westphalia. My first article was about wetland restoration measures from the fen "Bastauwiesen" ([Dorau et al. 2015](https://www.sciencedirect.com/science/article/abs/pii/S0925857415301233)). We investigated long term trends in water table depth development over 25 years at multiple wells within the study site. The organic rich soils of the fen are within the glacial valley of the River Weser with the basement composed of sandy to gravel Holocene deposits. South of the conservation area is the Wiehengebirge, which is the most northern summits of the Mittelgebirge. The soils at the ridge and along the slopes are mineral soils and the soil organic matter content (SOM) and the SOM stocks increase tremendously as closer you get to the wet but channelized Bastauwiesen fen. The soil properties vary a lot along a 3 km transect, which makes it a perfect location for training purposes to quantify SOM stocks in soils, discuss which processes ultimately results in SOM accrual in wetland soils, and, finally, visualize the data by maps.  
+The conservation area Bastauwiesen is a mesotrophic meadow fen and extends 11 km eastwards and 2 km southwards in the district of Minden-Lübbecke, North-Rhine Westphalia. My first article was about wetland restoration measures from the fen "Bastauwiesen" ([Dorau et al. 2015](https://www.sciencedirect.com/science/article/abs/pii/S0925857415301233)). We investigated long term trends in water table depth development over 25 years at multiple wells within the study site. The organic rich soils of the fen are within the glacial valley of the River Weser with the basement composed of sandy to gravel Holocene deposits. South of the conservation area is the Wiehengebirge, which is the most northern summits of the Mittelgebirge. The soils at the ridge and along the slopes are mineral soils and the soil organic matter content (SOM) and the SOM stocks increase tremendously as closer you get to the wet but channelized Bastauwiesen fen. The soil properties vary a lot along a 3 km transect, which makes it a perfect location for training purposes to quantify SOM stocks in soils, discuss which processes ultimately results in SOM accrual in wetland soils, and, finally, visualize the data by maps.  
 
 # Soil color
 
-One of the most important properties to describe soils is soil color. We use the Munsell soil color chart to describe the color in a technical and at best reproducible way but without doubt, it needs some training to find the correct color. The color will change from a dry towards a wet soil and it should be mentioned on which sample the assessment was done. Three factors are important:
+One of the most important properties to describe soils is soil color. We use the Munsell soil color chart to describe the color in a technical and at best reproducible way but without doubt, it needs some training to find the correct color. The color will change from a dry towards a wet soil and it should be mentioned on which sample the assessment was done. Three properties are important:
 
 - Hue (specific color)
 - Value (light vs dark)
@@ -68,7 +68,7 @@ For instance, the colors below denote three common Fe(III) oxides, humus and qua
 - ferrihydrite (2.5YR 3/6)
 - hematite, fine (10R 4/8)
 
-We need these information to quantify the soil organic carbon content of the soil. 
+We need these information to quantify the SOM content of the soil. 
 
 
 ```{r fig.cap="Examples of soil color from different minerals and humus in soils. Source: aqp Package and nrcs.usda.gov"}
@@ -117,7 +117,7 @@ First of all, you need to derive the humus content based on the soil color and t
 include_graphics("table.jpg")
 ```
 
-Finally, you need to sum up all the individual humus (or C~org~) contents and account for the bulk density. In most cases mineral soils have a lower bulk density with 1.2 g kg^-1^ compared with organic soils. If you have the individual density for each horizon this would be the best, otherwise you can estimate the density or assume an equal density throughout the soil profile.  
+Finally, you need to sum up all the individual humus (or C~org~) contents and account for the bulk density. In most cases mineral soils have a higher bulk density with 1.2 g kg^-1^ compared with organic soils. If you have the individual density for each horizon this would be the best, otherwise you can estimate the density or assume an equal density throughout the soil profile.  
 
 ```{r}
 include_graphics("calc.jpg")

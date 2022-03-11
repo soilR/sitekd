@@ -4,7 +4,7 @@ slug: null
 author: "Kristof Dorau"
 date: '2022-03-01'
 draft: false
-lastmod: "09 März, 2022"
+lastmod: "11 März, 2022"
 tags:
   - Monitoring
   - Field tools
@@ -24,16 +24,16 @@ editor_options:
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p><em>The post was last updated on 2022-03-09.</em></p>
+<p><em>The post was last updated on 2022-03-11.</em></p>
 <div style="text-align: justify">
 
 
 
 
-<p>The conservation area Bastauwiesen is a mesotrophic meadow fen and extends 11 km eastwards and 2 km soutwards in the district of Minden-Lübbecke, North-Rhine Westphalia. My first article was about wetland restoration measures from the fen “Bastauwiesen” (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0925857415301233">Dorau et al. 2015</a>). We investigated long term trends in water table depth development over 25 years at multiple wells within the study site. The organic rich soils of the fen are within the glacial valley of the River Weser with the basement composed of sandy to gravel Holocene deposits. South of the conservation area is the Wiehengebirge, which is the most northern summits of the Mittelgebirge. The soils at the ridge and along the slopes are mineral soils and the soil organic matter content (SOM) and the SOM stocks increase tremendously as closer you get to the wet but channelized Bastauwiesen fen. The soil properties vary a lot along a 3 km transect, which makes it a perfect location for training purposes to quantify SOM stocks in soils, discuss which processes ultimately results in SOM accrual in wetland soils, and, finally, visualize the data by maps.</p>
+<p>The conservation area Bastauwiesen is a mesotrophic meadow fen and extends 11 km eastwards and 2 km southwards in the district of Minden-Lübbecke, North-Rhine Westphalia. My first article was about wetland restoration measures from the fen “Bastauwiesen” (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0925857415301233">Dorau et al. 2015</a>). We investigated long term trends in water table depth development over 25 years at multiple wells within the study site. The organic rich soils of the fen are within the glacial valley of the River Weser with the basement composed of sandy to gravel Holocene deposits. South of the conservation area is the Wiehengebirge, which is the most northern summits of the Mittelgebirge. The soils at the ridge and along the slopes are mineral soils and the soil organic matter content (SOM) and the SOM stocks increase tremendously as closer you get to the wet but channelized Bastauwiesen fen. The soil properties vary a lot along a 3 km transect, which makes it a perfect location for training purposes to quantify SOM stocks in soils, discuss which processes ultimately results in SOM accrual in wetland soils, and, finally, visualize the data by maps.</p>
 <div id="soil-color" class="section level1">
 <h1>Soil color</h1>
-<p>One of the most important properties to describe soils is soil color. We use the Munsell soil color chart to describe the color in a technical and at best reproducible way but without doubt, it needs some training to find the correct color. The color will change from a dry towards a wet soil and it should be mentioned on which sample the assessment was done. Three factors are important:</p>
+<p>One of the most important properties to describe soils is soil color. We use the Munsell soil color chart to describe the color in a technical and at best reproducible way but without doubt, it needs some training to find the correct color. The color will change from a dry towards a wet soil and it should be mentioned on which sample the assessment was done. Three properties are important:</p>
 <ul>
 <li>Hue (specific color)</li>
 <li>Value (light vs dark)</li>
@@ -47,7 +47,7 @@ editor_options:
 <li>ferrihydrite (2.5YR 3/6)</li>
 <li>hematite, fine (10R 4/8)</li>
 </ul>
-<p>We need these information to quantify the soil organic carbon content of the soil.</p>
+<p>We need these information to quantify the SOM content of the soil.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" alt="Examples of soil color from different minerals and humus in soils. Source: aqp Package and nrcs.usda.gov" width="672" />
 <p class="caption">
@@ -111,7 +111,7 @@ Figure 2: Profile description with a Pürckhauer auger.
 Figure 3: Estimation of humus content in soils. Source: KA5, S. 111, Tab. 14
 </p>
 </div>
-<p>Finally, you need to sum up all the individual humus (or C<sub>org</sub>) contents and account for the bulk density. In most cases mineral soils have a lower bulk density with 1.2 g kg<sup>-1</sup> compared with organic soils. If you have the individual density for each horizon this would be the best, otherwise you can estimate the density or assume an equal density throughout the soil profile.</p>
+<p>Finally, you need to sum up all the individual humus (or C<sub>org</sub>) contents and account for the bulk density. In most cases mineral soils have a higher bulk density with 1.2 g kg<sup>-1</sup> compared with organic soils. If you have the individual density for each horizon this would be the best, otherwise you can estimate the density or assume an equal density throughout the soil profile.</p>
 <p><img src="calc.JPG" width="454" style="display: block; margin: auto;" /></p>
 <p>Et voila, the hypothetical soil from the example would yield a SOM stock of ~7 kg C<sub>org</sub> m<sup>-²</sup> (up to 100 cm depth).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7-1"></span>
